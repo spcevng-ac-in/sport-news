@@ -39,12 +39,12 @@ const Appbar = () => {
                   alt="Sport News"
                 />
               </div>
-              <div className="ml-10 flex items-baseline space-x-4">
-                Sports Center
-              </div>
-
+              
+              
             </div>
-
+            <div className="text-center text-3xl font-bold text-blue-600">
+              Sports Center  
+              </div>
             <div className="hidden md:block">
               <div className="ml-4 flex items-center md:ml-6">
                 <div className="py-16">
