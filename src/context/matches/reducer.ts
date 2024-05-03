@@ -1,5 +1,5 @@
 import { Reducer } from "react";
-import { MatchesState, MatchActions, MatcheAvailableAction, initialState } from "./types";
+import { MatchesState, MatchActions, MatcheAvailableAction, initialState} from "./types";
 
 
 export const MatchReducer: Reducer<MatchesState, MatchActions> = (
@@ -18,20 +18,9 @@ export const MatchReducer: Reducer<MatchesState, MatchActions> = (
                 isError: true,
                 errorMessage: action.payload
             }
-        case MatcheAvailableAction.FETCH_MATCH_DETAIL_REQUEST:
-            return { ...state, isLoading: true }
-        case MatcheAvailableAction.FETCH_MATCH_DETAIL_SUCCESS:
-            return {
-                ...state, isLoading: false,
-                matches: action.payload
-            }
-        case MatcheAvailableAction.FETCH_MATCH_DETAIL_FAILURE:
-            return {
-                ...state, isLoading: false,
-                isError: true,
-                errorMessage: action.payload
-            }
-        default:
-            return state;
+            default:
+                return state;
     }
+    
 }
+

@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
-import { useMatcheDetailDispatch, useMatchesDispatch } from "../../context/matches/context";
-import { fetchMatcheDetail, fetchMatches } from "../../context/matches/actions";
+import { useMatchesDispatch } from "../../context/matches/context";
+import { fetchMatches } from "../../context/matches/actions";
+import { useMatcheDetailDispatch } from "../../context/matchdetail/context";
+import { fetchMatcheDetail } from "../../context/matchdetail/actions";
 
 const MatchContainer = () => {
   let { matchID } = useParams();
