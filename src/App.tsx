@@ -6,22 +6,26 @@ import { ThemeContext } from "./context/theme";
 import { MatchesProvider } from "./context/matches/context";
 import { MatchesDetailProvider } from "./context/matchdetail/context";
 import { TrendingNewsProvider } from "./context/trendingnews/context";
+import { TrendingNewsDetailProvider } from "./context/trendingnewsdetail/context";
 
 
 const App = () => {
   const { theme } = useContext(ThemeContext)
   return (
     <div className={`h-screen w-full mx-auto py-2 ${theme === "dark" ? "dark" : ""}`}>
-      <TrendingNewsProvider>
-        <MatchesProvider>
-          <MatchesDetailProvider>
-            <Suspense fallback={<>Loading...</>}>
-              <RouterProvider router={router} />
-            </Suspense>
-          </MatchesDetailProvider>
-        </MatchesProvider>
-      </TrendingNewsProvider>
+      <TrendingNewsDetailProvider>
+        <TrendingNewsProvider>
 
+          <MatchesProvider>
+            <MatchesDetailProvider>
+              <Suspense fallback={<>Loading...</>}>
+                <RouterProvider router={router} />
+              </Suspense>
+            </MatchesDetailProvider>
+          </MatchesProvider>
+
+        </TrendingNewsProvider>
+      </TrendingNewsDetailProvider>
     </div>
   );
 }

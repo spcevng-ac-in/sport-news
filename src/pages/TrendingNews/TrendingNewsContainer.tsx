@@ -1,16 +1,20 @@
 import { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { useTrendingNewsDispatch } from "../../context/trendingnews/context";
 import { fetchTrendingNews } from "../../context/trendingnews/action";
+import { fetchTrendingNewsDetail } from "../../context/trendingnewsdetail/action";
+import { useTrendingNewsDetailDispatch } from "../../context/trendingnewsdetail/context";
 
 const TrendingNewsContainer = () => {
-//   let { matchID } = useParams();
+  let { newsID } = useParams();
   const trendingNewsDispatch = useTrendingNewsDispatch();
+  const trendingNewsDetailDispatch = useTrendingNewsDetailDispatch();
   
   useEffect(() => {
     fetchTrendingNews(trendingNewsDispatch);
+    if(newsID) fetchTrendingNewsDetail(trendingNewsDetailDispatch, newsID);
     
-  }, [trendingNewsDispatch]);
+  }, [trendingNewsDispatch, trendingNewsDetailDispatch]);
 
   return <Outlet />;
 };

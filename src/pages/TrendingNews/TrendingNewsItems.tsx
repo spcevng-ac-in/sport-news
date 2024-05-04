@@ -4,20 +4,21 @@ import { useTrendingNewsDispatch, useTrendingNewsState } from "../../context/tre
 import TrendingNews from ".";
 import { useEffect } from "react";
 import { fetchTrendingNews } from "../../context/trendingnews/action";
+import TrendingNewsDetail from "./TrendingNewsDetaiil";
 
 export default function TrendingNewsItems(props: Matches) {
-    let trendingNewsDispatch = useTrendingNewsDispatch();
+    // let trendingNewsDispatch = useTrendingNewsDispatch();
     // console.log("Trending News Dispatch:", trendingNewsDispatch);
 
     let trendingNewsState: any = useTrendingNewsState();
     const { trendingNews, isLoading, isError, errorMessage } = trendingNewsState
     console.log("Trending News:", trendingNews);
-    if (TrendingNews.length === 0 && isLoading) {
+    if (trendingNews.length === 0 && isLoading) {
         return <span>Trending News Loading...</span>;
     }
 
     if (isError) {
-        return <span>{errorMessage}</span>;
+        return <span>Trending News Item Page - {errorMessage}</span>;
     }
 
     return (
@@ -25,7 +26,7 @@ export default function TrendingNewsItems(props: Matches) {
             <div className="flex-col w-full">
                 {
                     trendingNews.map((news: any) => {
-                        console.log("News:", news);
+                        console.log("News:", news.id);
                         return (
 
                             <div
@@ -43,10 +44,8 @@ export default function TrendingNewsItems(props: Matches) {
                                     </div>
                                     <div className=" flex justify-between m-1 mt-4 text-nowrap text-xs text-gray-600 text-left">
                                         {news.date}
-                                        <Link className="mr-2"
-                                            key={news.id}
-                                            to={`${news.id}`}
-                                        >Read More...</Link>
+                                        <TrendingNewsDetail data={news}/>
+                                        
                                     </div>
                                 </div>
                                 <div className="w-1/4 bg-black">
