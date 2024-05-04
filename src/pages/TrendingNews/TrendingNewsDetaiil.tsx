@@ -12,31 +12,29 @@ const TrendingNewsDetail = (args: any) => {
     let news: TrendingNews = args.data;
     console.log("News:", news);
     let newsID: any = news.id;
+    console.log("News ID:", newsID);
 
+    // const formatDate = (isoDate: string) => {
+    //     try{
+    //         console.log("Date -> ", isoDate);
+    //         const dateObj = new Date(isoDate);
+    //         const year = dateObj.getFullYear();
+    //         const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+    //         const day = String(dateObj.getDate()).padStart(2, "0");
+    //         return `${year}-${month}-${day}`;
+    //     }
+    //     catch(error)
+    //     {
+    //         console.log("Date Formate error -", error);
 
-    const formatDate = (isoDate: string) => {
-        try{
-            console.log("Date -> ", isoDate);
-            const dateObj = new Date(isoDate);
-            const year = dateObj.getFullYear();
-            const month = String(dateObj.getMonth() + 1).padStart(2, "0");
-            const day = String(dateObj.getDate()).padStart(2, "0");
-            return `${year}-${month}-${day}`;
-        }
-        catch(error)
-        {
-            console.log("Date Formate error -", error);
-
-        }
-        return isoDate;
+    //     }
+    //     return isoDate;
         
-    };
+    // };
 
     const trendingNewsDetailDispatch = useTrendingNewsDetailDispatch();
     useEffect(() => {
-
         if (newsID) fetchTrendingNewsDetail(trendingNewsDetailDispatch, newsID);
-
     }, []);
 
     // const trendingNewsDetailDispacth = useTrendingNewsDetailDispatch();
@@ -67,34 +65,17 @@ const TrendingNewsDetail = (args: any) => {
 
 
 
-    // let {newsID} = useParams();
     const [isOpen, setIsOpen] = useState(false)
-    // const [error, setError] = useState(null)
-    // const dispatchMembers = useMembersDispatch();
-    // const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const closeModal = () => {
         setIsOpen(false)
     }
     const openModal = () => {
         setIsOpen(true)
     }
-    // const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    //     console.log("Member data:", data)
-    //     const { name, email, password } = data
-    //     const response = await addMember(dispatchMembers, { name, email, password })
-
-    //     if (response.ok) {
-    //         setIsOpen(false)
-    //     } else {
-    //         setError(response.error as React.SetStateAction<null>)
-    //     }
-    // };
+    
     return (
         <>
-            {/* <Link className="mr-2"
-                                            key={newsID}
-                                            to={`${newsID}`}
-                                        >Read More...</Link> */}
+            
             <Link to={newsID} key={newsID} >
                 <button onClick={openModal}
                     className="bg-transparent border-none"
@@ -144,7 +125,7 @@ const TrendingNewsDetail = (args: any) => {
                                         </div>
                                         <div className="flex justify-between">
                                             <div className="justify-self-auto text-purple-950 text-left text-sm" >{selectedNews.sport.name}</div>
-                                            <div className="justify-self-auto mr-0">{formatDate(selectedNews.date)}</div>
+                                            {/* <div className="justify-self-auto mr-0">{formatDate(selectedNews.date)}</div> */}
                                         </div>
                                         <div className='text-justify'>
                                             {selectedNews.content}

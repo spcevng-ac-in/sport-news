@@ -62,7 +62,15 @@ const router = createBrowserRouter([
                 path: "dashboard",
                 element: <DashboardContainer />,
                 children: [
-                    { index: true, element: <Dashboard /> },
+                    { index: true, element: <Dashboard />} ,
+                    
+                       {
+                          path: "/articles/:articleID",
+                          element: <NewsDetails />,
+                        }],
+                    
+                },
+                    
             //         {
             //             path: ":projectID",
             //             element: <ProjectDetails />,

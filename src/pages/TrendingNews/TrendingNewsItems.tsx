@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Matches } from "../../context/matches/types";
 import { useTrendingNewsDispatch, useTrendingNewsState } from "../../context/trendingnews/context";
 import TrendingNews from ".";
 import { useEffect } from "react";
 import { fetchTrendingNews } from "../../context/trendingnews/action";
 import TrendingNewsDetail from "./TrendingNewsDetaiil";
+import { useTrendingNewsDetailDispatch } from "../../context/trendingnewsdetail/context";
+import { fetchTrendingNewsDetail } from "../../context/trendingnewsdetail/action";
 
 export default function TrendingNewsItems(props: Matches) {
     // let trendingNewsDispatch = useTrendingNewsDispatch();
@@ -18,8 +20,15 @@ export default function TrendingNewsItems(props: Matches) {
     }
 
     if (isError) {
-        return <span>Trending News Item Page - {errorMessage}</span>;
+        return <span>Trending News Item Page -{errorMessage}</span>;
     }
+    // let newsID = useParams();
+    // const trendingNewsDetailDispatch = useTrendingNewsDetailDispatch();
+    // useEffect(() => {
+
+    //     if (newsID) fetchTrendingNewsDetail(trendingNewsDetailDispatch, newsID);
+
+    // }, []);
 
     return (
         <>
@@ -44,8 +53,12 @@ export default function TrendingNewsItems(props: Matches) {
                                     </div>
                                     <div className=" flex justify-between m-1 mt-4 text-nowrap text-xs text-gray-600 text-left">
                                         {news.date}
-                                        <TrendingNewsDetail data={news}/>
-                                        
+                                        {/* <TrendingNewsDetail data={news} /> */}
+                                        <Link to={`/articles/${news.id}`}>
+                      <p className="underline hover:text-blue-600 transiton duration-400">
+                        Read more...
+                      </p>
+                    </Link>{" "}
                                     </div>
                                 </div>
                                 <div className="w-1/4 bg-black">
