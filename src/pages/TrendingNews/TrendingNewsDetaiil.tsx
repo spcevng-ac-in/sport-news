@@ -1,18 +1,24 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { TrendingNews } from '../../context/trendingnews/types';
 import { useTrendingNewsDetailDispatch, useTrendingNewsDetailState } from '../../context/trendingnewsdetail/context';
 import { fetchTrendingNewsDetail } from '../../context/trendingnewsdetail/action';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 const TrendingNewsDetail = (args: any) => {
-    console.log("Data -> ", args.data);
-    let news: TrendingNews = args.data;
-    console.log("News:", news);
-    let newsID: any = news.id;
-    console.log("News ID:", newsID);
+    // console.log("Data -> ", args.data);
+    // let news: TrendingNews = args.data;
+    // console.log("News:", news);
+    // let newsID: any = news.id;
+    // console.log("News ID:", newsID);
+
+    const params = useParams();
+    console.log("Params:", params);
+    const newsID = params.articleID;
 
     // const formatDate = (isoDate: string) => {
     //     try{
@@ -29,7 +35,7 @@ const TrendingNewsDetail = (args: any) => {
 
     //     }
     //     return isoDate;
-        
+
     // };
 
     const trendingNewsDetailDispatch = useTrendingNewsDetailDispatch();
@@ -55,7 +61,7 @@ const TrendingNewsDetail = (args: any) => {
         (tempNews) => {
             console.log("tempnews.id", tempNews.id);
             console.log("newsID->", newsID);
-            return (tempNews.id === newsID)
+            return (tempNews.id === Number(newsID))
         }
     )?.[0];
     console.log("Selcted News:", selectedNews);
@@ -64,26 +70,30 @@ const TrendingNewsDetail = (args: any) => {
     }
 
 
+    const navigate = useNavigate();
 
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(true)
     const closeModal = () => {
         setIsOpen(false)
+        navigate("../")
     }
-    const openModal = () => {
-        setIsOpen(true)
-    }
-    
-    return (
-        <>
-            
-            <Link to={newsID} key={newsID} >
-                <button onClick={openModal}
-                    className="bg-transparent border-none"
-                >
-                    Read More...
-                </button>
-            </Link>
+    // const openModal = () => {
+    //     setIsOpen(true)
+    // }
 
+    return (
+        // isOpen?(
+        //     <>
+        //      <Link to={selectedNews.id} key={selectedNews.id} >
+        //         <button onClick={openModal}
+        //             className="bg-transparent border-none"
+        //         >
+        //             Read More...
+        //         </button>
+        //     </Link>
+        //     </>
+        // ):(
+        <>
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={closeModal}>
                     <Transition.Child
@@ -115,6 +125,18 @@ const TrendingNewsDetail = (args: any) => {
                                     >
                                         {selectedNews.title}
                                     </Dialog.Title>
+                                    <IconButton
+                                        aria-label="close"
+                                        onClick={closeModal}
+                                        sx={{
+                                            position: 'absolute',
+                                            right: 8,
+                                            top: 8,
+                                            color: (theme) => theme.palette.grey[500],
+                                        }}
+                                    >
+                                        <CloseIcon />
+                                    </IconButton>
                                     <div className="mt-2">
                                         <div>
                                             <img
@@ -140,5 +162,6 @@ const TrendingNewsDetail = (args: any) => {
             </Transition>
         </>
     )
+    // )
 }
 export default TrendingNewsDetail;

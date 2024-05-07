@@ -8,7 +8,7 @@ export const TrendingNewsReducer: Reducer<TrendingNewsState, TrendingNewsActions
         case TrendingNewsAvailableAction.FETCH_TRENDINGNEWS_REQUEST:
             return { ...state, isLoading: true }
         case TrendingNewsAvailableAction.FETCH_TRENDINGNEWS_SUCCESS:
-            console.log("State:", state);
+            // console.log("State:", state);
             
             return {
                 ...state, isLoading: false,

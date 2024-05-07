@@ -17,7 +17,7 @@ export const fetchTrendingNews = async (
             throw new Error("Failed to Fetch TrendingNews")
         }
         const data = await res.json();
-        console.log("Data:", data);
+        // console.log("Data:", data);
         dispatch({
             type: TrendingNewsAvailableAction.FETCH_TRENDINGNEWS_SUCCESS,
             payload: data

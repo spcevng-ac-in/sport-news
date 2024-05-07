@@ -5,10 +5,12 @@ import LiveGames from "../LiveGames";
 
 
 const Dashboard = () => {
+  
   return (
     <>
       <ErrorBoundary>
         <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
+          
             <LiveGames />
             <TrendingNews />
             

@@ -5,6 +5,7 @@ import AccountLayout from "../layouts/account";
 import ProtectedRoute from "./ProtectedRoute";
 import DashboardContainer from "../pages/dashboard/DashboardContainer";
 import Dashboard from "../pages/dashboard";
+import TrendingNewsDetail from "../pages/TrendingNews/TrendingNewsDetaiil";
 
 const Signin = React.lazy(() => import("../pages/signin"));
 const Signup = React.lazy(() => import("../pages/signup"));
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <Signup />
     },
+
     // {
     //     path: "/logout",
     //     element: <Logout />
@@ -62,61 +64,14 @@ const router = createBrowserRouter([
                 path: "dashboard",
                 element: <DashboardContainer />,
                 children: [
-                    { index: true, element: <Dashboard />} ,
-                    
-                       {
-                          path: "/articles/:articleID",
-                          element: <NewsDetails />,
-                        }],
-                    
-                },
-                    
-            //         {
-            //             path: ":projectID",
-            //             element: <ProjectDetails />,
-            //             children: [
-            //                 { index: true, element: <></> },
-            //                 {
-            //                     path: "tasks",
-            //                     children: [
-            //                         {
-            //                             index: true,
-            //                             element: <Navigate to="../" replace />
-            //                         },
-            //                         {
-            //                             path: "new",
-            //                             element: <NewTask />,
-            //                         },
-            //                         {
-            //                             path: ":taskID",
-            //                             children: [
-            //                                 { index: true, element: <TaskDetailsContainer /> },
-            //                                 {
-            //                                     path: "comments",
-            //                                     children: [
-            //                                         {
-            //                                             index: true,
-            //                                             element: <CommentList />,
-
-            //                                         },
-            //                                         {
-            //                                             path: "new",
-            //                                             element: <NewComment />,
-            //                                         },
-            //                                     ],
-            //                                 }
-            //                             ],
-            //                         },
-            //                     ],
-            //                 },
-                        ],
-            //         },
-            //     ],
-            // },
-            // {
-            //     path: "members",
-            //     element: (<Members />)
+                    { index: true, element: <Dashboard /> },
+                    {
+                        path: ":articleID",
+                        element: <TrendingNewsDetail />,
+                    }
+                ]
             },
+
         ],
     },
 

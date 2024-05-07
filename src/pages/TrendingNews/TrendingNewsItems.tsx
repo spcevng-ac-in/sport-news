@@ -1,12 +1,9 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Matches } from "../../context/matches/types";
-import { useTrendingNewsDispatch, useTrendingNewsState } from "../../context/trendingnews/context";
-import TrendingNews from ".";
-import { useEffect } from "react";
-import { fetchTrendingNews } from "../../context/trendingnews/action";
+import { useTrendingNewsState } from "../../context/trendingnews/context";
 import TrendingNewsDetail from "./TrendingNewsDetaiil";
-import { useTrendingNewsDetailDispatch } from "../../context/trendingnewsdetail/context";
 import { fetchTrendingNewsDetail } from "../../context/trendingnewsdetail/action";
+import { useTrendingNewsDetailDispatch } from "../../context/trendingnewsdetail/context";
 
 export default function TrendingNewsItems(props: Matches) {
     // let trendingNewsDispatch = useTrendingNewsDispatch();
@@ -14,7 +11,7 @@ export default function TrendingNewsItems(props: Matches) {
 
     let trendingNewsState: any = useTrendingNewsState();
     const { trendingNews, isLoading, isError, errorMessage } = trendingNewsState
-    console.log("Trending News:", trendingNews);
+    console.log("Trending News:", trendingNews, isLoading, isError, errorMessage);
     if (trendingNews.length === 0 && isLoading) {
         return <span>Trending News Loading...</span>;
     }
@@ -35,10 +32,11 @@ export default function TrendingNewsItems(props: Matches) {
             <div className="flex-col w-full">
                 {
                     trendingNews.map((news: any) => {
-                        console.log("News:", news.id);
+                        // console.log("News:", news.id);
+                        // fetchTrendingNewsDetail(trendingNewsDetailDispatch, news.id);
                         return (
 
-                            <div
+                            <div key={news.id}
                                 className=" flex justify-between m-2 block bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                             >
                                 <div className="w-3/4">
@@ -54,11 +52,11 @@ export default function TrendingNewsItems(props: Matches) {
                                     <div className=" flex justify-between m-1 mt-4 text-nowrap text-xs text-gray-600 text-left">
                                         {news.date}
                                         {/* <TrendingNewsDetail data={news} /> */}
-                                        <Link to={`/articles/${news.id}`}>
+                                        <Link to={`${news.id}`}>
                       <p className="underline hover:text-blue-600 transiton duration-400">
                         Read more...
                       </p>
-                    </Link>{" "}
+                    </Link>
                                     </div>
                                 </div>
                                 <div className="w-1/4 bg-black">
