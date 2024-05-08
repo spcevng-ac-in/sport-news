@@ -21,6 +21,7 @@ export default function MatchListItems(props: Matches) {
         return <span>{errorMessage}</span>;
     }
 
+    // console.log("Matches:", matches);
     const { matchDetail, isLoading2, isError2, errorMessage2 } = matchDetailState;
     // console.log("All Match Detail:", matchDetail);
     return (

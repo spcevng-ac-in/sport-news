@@ -33,19 +33,20 @@ const TrendingNews = () => {
 
   return (
     <>
-      <div className="flex justify-start p-2">
+      <div className="justify-start p-2">
         <h2 className="text-2xl font-medium tracking-tight text-slate-700">
           Trending News
         </h2>
-      </div>
-      <ErrorBoundary>
+        <ErrorBoundary>
         <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
-          {/* <TrendingNewsList /> */}
+          <TrendingNewsList />
 
-          <TrendingNews/>
+          {/* <TrendingNews/> */}
        
     </Suspense >
       </ErrorBoundary >
+      </div>
+      
     </>
   );
 };

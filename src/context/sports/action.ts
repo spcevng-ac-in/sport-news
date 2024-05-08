@@ -5,7 +5,7 @@ import { SportAction, SportDispatch } from "./type";
 export const fetchSports = async (
     dispatch: SportDispatch,
 ) => {
-    console.log("URL:", `${API_ENDPOINT}/sports`)
+    // console.log("URL:", `${API_ENDPOINT}/sports`)
     try {
         dispatch({ type: SportAction.FETCH_SPORT_REQUEST })
         const res = await fetch(`${API_ENDPOINT}/sports`, {
@@ -21,7 +21,7 @@ export const fetchSports = async (
         // console.log("Sports Data:", data);
         dispatch({
             type: SportAction.FETCH_SPORT_SUCCESS,
-            payload: data
+            payload: data.sports
         })
 
     } catch (error) {

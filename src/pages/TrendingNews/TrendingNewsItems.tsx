@@ -5,7 +5,9 @@ import TrendingNewsDetail from "./TrendingNewsDetaiil";
 import { fetchTrendingNewsDetail } from "../../context/trendingnewsdetail/action";
 import { useTrendingNewsDetailDispatch } from "../../context/trendingnewsdetail/context";
 
-export default function TrendingNewsItems(props: Matches) {
+export default function TrendingNewsItems(props: any) {
+    let sportID = props.sportID;
+    console.log("Sport ID:", sportID);
     // let trendingNewsDispatch = useTrendingNewsDispatch();
     // console.log("Trending News Dispatch:", trendingNewsDispatch);
 
@@ -27,11 +29,22 @@ export default function TrendingNewsItems(props: Matches) {
 
     // }, []);
 
+    let selectedNews = trendingNews.filter(
+        (tempNews) => {
+            // console.log("tempnews.id", tempNews.id);
+            console.log("sportID->", sportID);
+            return (tempNews.sport.id === Number(sportID))
+        }
+    );
+    console.log("Selcted News:", selectedNews);
+    if (selectedNews === undefined || selectedNews.length === 0) {
+        return <span className="text-lg font-bold">No Trending News for Now!</span>
+    }
     return (
         <>
             <div className="flex-col w-full">
                 {
-                    trendingNews.map((news: any) => {
+                    selectedNews.map((news: any) => {
                         // console.log("News:", news.id);
                         // fetchTrendingNewsDetail(trendingNewsDetailDispatch, news.id);
                         return (
