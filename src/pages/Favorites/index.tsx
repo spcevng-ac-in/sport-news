@@ -1,11 +1,13 @@
 import { Suspense, useEffect } from "react";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import FavoritesList from "./FavoritesList";
-import Dropdown from "./DropDown";
+import Dropdown from "./DropDownSport";
 import { useSportDispatch, useSportState } from "../../context/sports/context";
 import { useTeamsDispatch, useTeamsState } from "../../context/teams/context";
 import { fetchSports } from "../../context/sports/action";
 import { fetchTeams } from "../../context/teams/actions";
+import DropdownSport from "./DropDownSport";
+import DropdownTeam from "./DropDownTeam";
 
 
 const Favorites = () => {
@@ -45,11 +47,7 @@ const Favorites = () => {
 
   console.log("Sport Items:", (sports));
 
-// if(teams === undefined)
-//   {
-//     fetchTeams(teamsDispatch);
-//     return <span>Teams Loading...</span>;
-//   }
+
   if (teams.length === 0 && isLoading2) {
     return <span>Teams Loading...</span>;
   }
@@ -76,11 +74,11 @@ const Favorites = () => {
           <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
 
             <div className="m-2">
-            <Dropdown options={sports} placeHolder="Select Sport" labelName="My Favorite Sport"
+            <DropdownSport options={sports} placeHolder="Select Sport" labelName="My Favorite Sport"
             />
             </div>
             <div className="m-2">
-            <Dropdown options={teams} placeHolder="Select Team" labelName="My Favorite Team"
+            <DropdownTeam options={teams} placeHolder="Select Team" labelName="My Favorite Team"
             />
             </div>
             <FavoritesList />

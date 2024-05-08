@@ -1,13 +1,13 @@
 import { createContext, useContext, useReducer } from "react";
-import { FavoritesDispatch, FavoritesState, initialFavoritesState } from "./types";
+import { FavoritesDispatch, FavoriteSportState, initialFavoriteSportState } from "./types";
 import { FavoritesReducer } from "./reducer";
 
-const FavoritesStateContext = createContext<FavoritesState | undefined>(initialFavoritesState);
+const FavoritesStateContext = createContext<FavoriteSportState | undefined>(initialFavoriteSportState);
 const FavoritesDispatchContext = createContext<FavoritesDispatch>(() => {});
 
 export const FavoritesProvider: React.FC<React.PropsWithChildren > = ({
     children,}) => {
-    const [state, dispacth] = useReducer(FavoritesReducer, initialFavoritesState);
+    const [state, dispacth] = useReducer(FavoritesReducer, initialFavoriteSportState);
     return (
       <FavoritesStateContext.Provider value={state}>
         <FavoritesDispatchContext.Provider value={dispacth}>
@@ -17,5 +17,5 @@ export const FavoritesProvider: React.FC<React.PropsWithChildren > = ({
     );
   };
   
-export const useFavoritesState = () => useContext(FavoritesStateContext);
-export const useFavoritesDispatch = () => useContext(FavoritesDispatchContext);
+export const useFavoriteSportState = () => useContext(FavoritesStateContext);
+export const useFavoriteSportDispatch = () => useContext(FavoritesDispatchContext);

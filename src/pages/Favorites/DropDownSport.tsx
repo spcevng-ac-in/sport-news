@@ -3,13 +3,13 @@ import { ArrowDownIcon } from '@heroicons/react/24/outline'
 import React, { useEffect, useRef } from 'react';
 import cx from 'classnames';
 import { IDropdownProps } from '../../context/favorites/types';
-import FavoritesItems from './FavoritesItems';
-import { useFavoritesDispatch, useFavoritesState } from '../../context/favorites/context';
+
+import { useFavoriteSportDispatch, useFavoriteSportState } from '../../context/favorites/context';
 import { updateSportSelection } from '../../context/favorites/actions';
 
 
 
-function Dropdown({
+function DropdownSport({
 	labelName,
 	name,
 	options,
@@ -20,9 +20,7 @@ function Dropdown({
 	tabIndex,
 }: IDropdownProps) {
 
-	const favoritesState = useFavoritesState();
-	console.log("Favorite State:", favoritesState);
-	const favoritesDispatch = useFavoritesDispatch();
+	const favoriteSportDispatch = useFavoriteSportDispatch();
 	// console.log("Favorite Dispatch:", favoritesDispatch);
 
 
@@ -32,8 +30,8 @@ function Dropdown({
 	const wrapperRef = useRef<any>(null);
 
 	useEffect(() => {
-		updateSportSelection(favoritesDispatch, selectedID, selectedItem);
-	}, []);
+		updateSportSelection(favoriteSportDispatch, {selectedID, selectedItem});
+	}, [favoriteSportDispatch, {selectedID, selectedItem}]);
 
 	useEffect(() => {
 		function handleClickOutside(event: any) {
@@ -48,12 +46,16 @@ function Dropdown({
 		};
 	}, [wrapperRef]);
 
+	const favoritesState = useFavoriteSportState();
+	console.log("Favorite State:", favoritesState);
+
+
 	const onValueChange = (selectedID: string | number, selectedValue: string | number) => {
 		setSelectedID(selectedID);
 		setSelectedItem(selectedValue);
 		setIsFocused(false);
 		console.log("Update Sport:", selectedID, selectedValue);
-		updateSportSelection(favoritesDispatch, selectedID, selectedValue);
+		updateSportSelection(favoriteSportDispatch, {selectedID, selectedValue});
 		// console.log("selected Item:", selectedID);
 	};
 	React.useEffect(() => {
@@ -98,7 +100,7 @@ function Dropdown({
 					)}
 				</div>
 				{isFocused && (
-					<ul className=" items-center gap-4 block absolute w-full">
+					<ul className=" items-center gap-4 block absolute w-full z-50">
 						{options.map(({ id, name }) => (
 							<li
 								onClick={() => onValueChange(id, name)}
@@ -110,17 +112,17 @@ function Dropdown({
 				)}
 			</div>
 
-			<div>
+			{/* <div>
 
 				<FavoritesItems sportID={selectedID} />
-			</div>
+			</div> */}
 		</div>
 	);
 }
 
-export default Dropdown;
+export default DropdownSport;
 
-Dropdown.defaultProps = {
+DropdownSport.defaultProps = {
 	name: '',
 	type: '',
 	className: '',

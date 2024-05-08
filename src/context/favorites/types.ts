@@ -1,25 +1,25 @@
 export interface IDropdownOption {
-	id: string | number;
-	name: string | number;
+    id: string | number;
+    name: string | number;
 }
 
 export interface IDropdownProps {
-	name?: string;
-	options: IDropdownOption[];
-	required?: boolean;
-	tabIndex?: number;
-	className?: string;
-	type?: string;
-	placeHolder?: string;
-	labelName?: string;
+    name?: string;
+    options: IDropdownOption[];
+    required?: boolean;
+    tabIndex?: number;
+    className?: string;
+    type?: string;
+    placeHolder?: string;
+    labelName?: string;
 }
 
-export interface FavoritesState{
-    sport: IDropdownOption[]
-  }
+export interface FavoriteSportState {
+    sports: IDropdownOption[]
+}
 
-  export const initialFavoritesState: FavoritesState = {
-    sport: []
+export const initialFavoriteSportState: FavoriteSportState = {
+    sports: []
 };
 
 

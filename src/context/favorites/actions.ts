@@ -1,18 +1,18 @@
 
-import { useFavoritesState } from "./context";
+import { useFavoriteSportState } from "./context";
 import { FavoritesAction, FavoritesDispatch } from "./types";
 
 export const updateSportSelection = async (
-    dispatch: FavoritesDispatch, id: any, name:any
+    dispatch: FavoritesDispatch, sport: any
 ) => {
-    const favoritesState = useFavoritesState();
+    const favoritesState = useFavoriteSportState();
 	console.log("Favorite State:->", favoritesState);
 	
     try {
         
         dispatch({
             type: FavoritesAction.FETCH_FAVORITES_SUCCESS,
-            payload: {id, name}
+            payload: sport
         })
         console.log("Action: Favorite:",favoritesState );
     } catch (error) {
