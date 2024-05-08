@@ -1,5 +1,5 @@
 import { API_ENDPOINT } from "../../config/constants";
-import { SportAction, SportDispatch } from "./type";
+import { SportAction, SportDispatch } from "./types";
 
 
 export const fetchSports = async (

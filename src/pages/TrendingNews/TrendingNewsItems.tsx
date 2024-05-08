@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
-import { Matches } from "../../context/matches/types";
 import { useTrendingNewsState } from "../../context/trendingnews/context";
-import TrendingNewsDetail from "./TrendingNewsDetaiil";
-import { fetchTrendingNewsDetail } from "../../context/trendingnewsdetail/action";
-import { useTrendingNewsDetailDispatch } from "../../context/trendingnewsdetail/context";
+import { TrendingNews } from "../../context/trendingnews/types";
 
 export default function TrendingNewsItems(props: any) {
     let sportID = props.sportID;
@@ -30,7 +27,7 @@ export default function TrendingNewsItems(props: any) {
     // }, []);
 
     let selectedNews = trendingNews.filter(
-        (tempNews) => {
+        (tempNews: TrendingNews) => {
             // console.log("tempnews.id", tempNews.id);
             console.log("sportID->", sportID);
             return (tempNews.sport.id === Number(sportID))

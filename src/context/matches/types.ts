@@ -1,5 +1,5 @@
 import React from "react";
-import { Sport } from "../sports/type";
+import { Sport } from "../sports/types";
 
 export interface Matches {
     id: number;

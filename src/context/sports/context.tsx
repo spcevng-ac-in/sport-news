@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { SportDispatch, SportState, initialSportState } from "./type";
+import { SportDispatch, SportState, initialSportState } from "./types";
 import { SportReducer } from "./reducer";
 
 const SportStateContext = createContext<SportState>(initialSportState);

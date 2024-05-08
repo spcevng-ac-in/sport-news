@@ -1,5 +1,5 @@
 import { Reducer } from "react";
-import { SportAction, SportActions, SportState, initialSportState } from "./type";
+import { SportAction, SportActions, SportState, initialSportState } from "./types";
 
 export const SportReducer: Reducer<SportState, SportActions> = (
     state = initialSportState, action) => {

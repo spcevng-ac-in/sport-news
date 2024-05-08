@@ -1,4 +1,4 @@
-import { Sport } from "../sports/type";
+import { Sport } from "../sports/types";
 
 export interface MatchDetail {
     id: number;

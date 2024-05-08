@@ -1,4 +1,4 @@
-import { Sport, Team } from "../sports/type";
+import { Sport, Team } from "../sports/types";
 
 export interface TrendingNewsDetail{
     id: number;

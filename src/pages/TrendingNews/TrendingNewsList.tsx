@@ -1,5 +1,5 @@
 import React from "react";
-import TrendingNewsItems from "./TrendingNewsItems";
+
 import TrendingNews from "./TrendingNews";
 
 const TrendingNewsList: React.FC = () => {
