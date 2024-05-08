@@ -4,13 +4,13 @@ import { TrendingNews } from "../../context/trendingnews/types";
 
 export default function TrendingNewsItems(props: any) {
     let sportID = props.sportID;
-    console.log("Sport ID:", sportID);
+    // console.log("Sport ID:", sportID);
     // let trendingNewsDispatch = useTrendingNewsDispatch();
     // console.log("Trending News Dispatch:", trendingNewsDispatch);
 
     let trendingNewsState: any = useTrendingNewsState();
     const { trendingNews, isLoading, isError, errorMessage } = trendingNewsState
-    console.log("Trending News:", trendingNews, isLoading, isError, errorMessage);
+    // console.log("Trending News:", trendingNews, isLoading, isError, errorMessage);
     if (trendingNews.length === 0 && isLoading) {
         return <span>Trending News Loading...</span>;
     }
@@ -29,11 +29,11 @@ export default function TrendingNewsItems(props: any) {
     let selectedNews = trendingNews.filter(
         (tempNews: TrendingNews) => {
             // console.log("tempnews.id", tempNews.id);
-            console.log("sportID->", sportID);
+            // console.log("sportID->", sportID);
             return (tempNews.sport.id === Number(sportID))
         }
     );
-    console.log("Selcted News:", selectedNews);
+    // console.log("Selcted News:", selectedNews);
     if (selectedNews === undefined || selectedNews.length === 0) {
         return <span className="text-lg font-bold">No Trending News for Now!</span>
     }

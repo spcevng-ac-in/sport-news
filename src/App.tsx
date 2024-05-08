@@ -8,12 +8,14 @@ import { MatchesDetailProvider } from "./context/matchdetail/context";
 import { TrendingNewsProvider } from "./context/trendingnews/context";
 import { TrendingNewsDetailProvider } from "./context/trendingnewsdetail/context";
 import { SportProvider } from "./context/sports/context";
+import { FavoritesProvider } from "./context/favorites/context";
 
 
 const App = () => {
   const { theme } = useContext(ThemeContext)
   return (
     <div className={`h-screen w-full mx-auto py-2 ${theme === "dark" ? "dark" : ""}`}>
+      <FavoritesProvider>
       <SportProvider>
       <TrendingNewsDetailProvider>
         <TrendingNewsProvider>
@@ -27,6 +29,7 @@ const App = () => {
         </TrendingNewsProvider>
       </TrendingNewsDetailProvider>
       </SportProvider>
+      </FavoritesProvider>
     </div>
   );
 }
