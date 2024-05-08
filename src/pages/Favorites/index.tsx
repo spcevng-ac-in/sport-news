@@ -1,16 +1,36 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import FavoritesList from "./FavoritesList";
 import Dropdown from "./DropDown";
-import { useSportState } from "../../context/sports/context";
+import { useSportDispatch, useSportState } from "../../context/sports/context";
+import { useTeamsDispatch, useTeamsState } from "../../context/teams/context";
+import { fetchSports } from "../../context/sports/action";
+import { fetchTeams } from "../../context/teams/actions";
 
 
 const Favorites = () => {
+  const sportsDispatch = useSportDispatch();
+  let teamsDispatch = useTeamsDispatch();
+  // console.log("Team Dispatch:", teamsDispatch);
+  // fetchTeams(teamsDispatch);
+  useEffect(() => {
+		fetchSports(sportsDispatch);
+    fetchTeams(teamsDispatch);
+	}, []);
+
   let sportState: any = useSportState();
   const { sports, isLoading, isError, errorMessage } = sportState;
   console.log("Sports:", sports, isLoading, isError, errorMessage);
   console.log("Sport Length:", sports.length);
 
+
+  let teamState: any = useTeamsState();
+  
+  const { teams, isLoading2, isError2, errorMessage2 } = teamState;
+  // console.log("Teams:", teams, isLoading2, isError2, errorMessage2);
+  // console.log("Teams Length:", teams.length);
+  
+  
   if (sports.length === 0 && isLoading) {
     return <span>Sports News Loading...</span>;
   }
@@ -25,6 +45,24 @@ const Favorites = () => {
 
   console.log("Sport Items:", (sports));
 
+// if(teams === undefined)
+//   {
+//     fetchTeams(teamsDispatch);
+//     return <span>Teams Loading...</span>;
+//   }
+  if (teams.length === 0 && isLoading2) {
+    return <span>Teams Loading...</span>;
+  }
+
+  if (teams.length === 0) {
+    return <span>Wait Teams Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Teams Item Page -{errorMessage}</span>;
+  }
+
+  console.log("Teams Items:", (teams));
 
   return (
     <>
@@ -41,7 +79,10 @@ const Favorites = () => {
             <Dropdown options={sports} placeHolder="Select Sport" labelName="My Favorite Sport"
             />
             </div>
-            
+            <div className="m-2">
+            <Dropdown options={teams} placeHolder="Select Team" labelName="My Favorite Team"
+            />
+            </div>
             <FavoritesList />
 
           </Suspense>

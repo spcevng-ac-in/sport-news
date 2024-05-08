@@ -110,47 +110,6 @@ function Dropdown({
 				)}
 			</div>
 
-			<div ref={wrapperRef} className="text-nowrap w-full pr-2 border-2 border-[#979797] relative">
-				<div className="flex flex-row items-center">
-					<span className="text-sm text-[#A4A4A4] mb-2">{labelName}</span>
-					{required && (
-						<span className="text-[20px] text-[#FF0000] ml-2 top-0 ">*</span>
-					)}
-				</div>
-				<div
-					tabIndex={tabIndex}
-					className={cx(
-						'w-full bg-white h-[41px] rounded-lg drop-shadow-input pl-3 focus:outline-0 focus:drop-shadow-none transition relative flex items-center',
-						{
-							'rounded-b-[0]': isFocused,
-						},
-						className
-					)}
-					onClick={() => setIsFocused(!isFocused)}>
-					<span>{selectedItem ?? placeHolder}</span>
-					{type === 'arrow-down' && (
-						<div className="right-3 transform -translate-y-1/2 z-10 absolute top-5">
-							{selectedItem && selectedItem !== placeHolder ? (
-								<div onClick={(e) => onClear(e)}>Temizle</div>
-							) : (
-								<ArrowDownIcon />
-							)}
-						</div>
-					)}
-				</div>
-				{isFocused && (
-					<ul className=" items-center gap-4 block absolute w-full">
-						{options.map(({ id, name }) => (
-							<li
-								onClick={() => onValueChange(id, name)}
-								className="rounded-sm shadow-[inset_1px_0px_0px_rgba(0,0,0,0.2) bg-white drop-shadow-input pl-3 focus:outline-0 focus:drop-shadow-none transition relative flex hover:bg-[#F7B500] ">
-								{name}
-							</li>
-						))}
-					</ul>
-				)}
-			</div>
-
 			<div>
 
 				<FavoritesItems sportID={selectedID} />

@@ -9,6 +9,7 @@ import { TrendingNewsProvider } from "./context/trendingnews/context";
 import { TrendingNewsDetailProvider } from "./context/trendingnewsdetail/context";
 import { SportProvider } from "./context/sports/context";
 import { FavoritesProvider } from "./context/favorites/context";
+import { TeamsProvider } from "./context/teams/context";
 
 
 const App = () => {
@@ -16,19 +17,21 @@ const App = () => {
   return (
     <div className={`h-screen w-full mx-auto py-2 ${theme === "dark" ? "dark" : ""}`}>
       <FavoritesProvider>
-      <SportProvider>
-      <TrendingNewsDetailProvider>
-        <TrendingNewsProvider>
-          <MatchesProvider>
-            <MatchesDetailProvider>
-              <Suspense fallback={<>Loading...</>}>
-                <RouterProvider router={router} />
-              </Suspense>
-            </MatchesDetailProvider>
-          </MatchesProvider>
-        </TrendingNewsProvider>
-      </TrendingNewsDetailProvider>
-      </SportProvider>
+        <SportProvider>
+          <TeamsProvider>
+            <TrendingNewsDetailProvider>
+              <TrendingNewsProvider>
+                <MatchesProvider>
+                  <MatchesDetailProvider>
+                    <Suspense fallback={<>Loading...</>}>
+                      <RouterProvider router={router} />
+                    </Suspense>
+                  </MatchesDetailProvider>
+                </MatchesProvider>
+              </TrendingNewsProvider>
+            </TrendingNewsDetailProvider>
+          </TeamsProvider>
+        </SportProvider>
       </FavoritesProvider>
     </div>
   );
