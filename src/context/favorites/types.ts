@@ -1,7 +1,15 @@
+import React from "react";
+
 export interface IDropdownOption {
     id: string | number;
     name: string | number;
 }
+
+// export default function FavoriteState () {
+
+//  const [favoriteSportState, setFavoriteSportState] = React.useState<number | string>("");
+//  const [favoriteTeamState, setFavoriteTeamState] = React.useState<number | string>("");
+// }
 
 export interface IDropdownProps {
     name?: string;
@@ -12,6 +20,7 @@ export interface IDropdownProps {
     type?: string;
     placeHolder?: string;
     labelName?: string;
+    setState?: any
 }
 
 export interface FavoriteSportState {

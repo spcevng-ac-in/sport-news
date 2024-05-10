@@ -4,6 +4,7 @@ import { Cog6ToothIcon, UserCircleIcon } from '@heroicons/react/24/outline'
 import Logo from "../../assets/images/logo.svg"
 
 import { ThemeContext } from "../../context/theme";
+import Preferences from './Preferences';
 
 const userNavigation = [
   { name: 'Profile', href: '#' },
@@ -39,12 +40,12 @@ const Appbar = () => {
                   alt="Sport News"
                 />
               </div>
-              
-              
+
+
             </div>
             <div className="text-center text-3xl font-bold text-blue-600">
-              Sports Center  
-              </div>
+              Sports Center
+            </div>
             <div className="hidden md:block">
               <div className="ml-4 flex items-center md:ml-6">
                 <div className="py-16">
@@ -70,7 +71,8 @@ const Appbar = () => {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="rounded-full bg-white p-1 text-gray-400 hover:text-blue-600">
-                      <Cog6ToothIcon className="w-8 dark:bg-gray-800 dark:text-white bg-white  text-gray-400  dark:hover:text-blue-500 hover:text-blue-600" />
+                      <Preferences />
+                      {/* <Cog6ToothIcon className="w-8 dark:bg-gray-800 dark:text-white bg-white  text-gray-400  dark:hover:text-blue-500 hover:text-blue-600" /> */}
                     </Menu.Button>
 
                     <Menu.Button className="rounded-full bg-white p-1 text-gray-400 hover:text-blue-600">

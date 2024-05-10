@@ -1,13 +1,8 @@
 // import { ArrowDownIcon } from 'Icons'; //you can use your icons
-import { ArrowDownIcon } from '@heroicons/react/24/outline'
+import { ArrowDownIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
 import React, { useEffect, useRef } from 'react';
 import cx from 'classnames';
 import { IDropdownProps } from '../../context/favorites/types';
-
-import { useFavoriteSportDispatch, useFavoriteSportState } from '../../context/favorites/context';
-import { updateSportSelection } from '../../context/favorites/actions';
-
-
 
 function DropdownSport({
 	labelName,
@@ -18,9 +13,10 @@ function DropdownSport({
 	required,
 	className,
 	tabIndex,
+	setState
 }: IDropdownProps) {
 
-	const favoriteSportDispatch = useFavoriteSportDispatch();
+	// const favoriteSportDispatch = useFavoriteSportDispatch();
 	// console.log("Favorite Dispatch:", favoritesDispatch);
 
 
@@ -29,9 +25,9 @@ function DropdownSport({
 	const [selectedID, setSelectedID] = React.useState<number | string>();
 	const wrapperRef = useRef<any>(null);
 
-	useEffect(() => {
-		updateSportSelection(favoriteSportDispatch, {selectedID, selectedItem});
-	}, [favoriteSportDispatch, {selectedID, selectedItem}]);
+	// useEffect(() => {
+	// 	updateSportSelection(favoriteSportDispatch, {selectedID, selectedItem});
+	// }, [favoriteSportDispatch]);
 
 	useEffect(() => {
 		function handleClickOutside(event: any) {
@@ -46,17 +42,18 @@ function DropdownSport({
 		};
 	}, [wrapperRef]);
 
-	const favoritesState = useFavoriteSportState();
-	console.log("Favorite State:", favoritesState);
+	// const favoritesState = useFavoriteSportState();
+	// console.log("Favorite State:", favoritesState);
 
 
 	const onValueChange = (selectedID: string | number, selectedValue: string | number) => {
 		setSelectedID(selectedID);
 		setSelectedItem(selectedValue);
 		setIsFocused(false);
-		console.log("Update Sport:", selectedID, selectedValue);
-		updateSportSelection(favoriteSportDispatch, {selectedID, selectedValue});
-		// console.log("selected Item:", selectedID);
+		// setFavoriteSportState(selectedID);
+		// setState(selectedID);
+		setState({id:selectedID,name:selectedValue});
+
 	};
 	React.useEffect(() => {
 		setIsFocused(false);
@@ -68,9 +65,9 @@ function DropdownSport({
 		setIsFocused(false);
 	};
 	// console.log("Options:", options);
-	console.log("Selected my sport id:", selectedID);
+	// console.log("Selected my sport id:", selectedID);
 	return (
-		<div>
+		<div key="DropDownSport">
 			<div ref={wrapperRef} className="text-nowrap w-full pr-2 border-2 border-[#979797] relative">
 				<div className="flex flex-row items-center">
 					<span className="text-sm text-[#A4A4A4] mb-2">{labelName}</span>
@@ -94,13 +91,13 @@ function DropdownSport({
 							{selectedItem && selectedItem !== placeHolder ? (
 								<div onClick={(e) => onClear(e)}>Temizle</div>
 							) : (
-								<ArrowDownIcon />
+								<ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
 							)}
 						</div>
 					)}
 				</div>
 				{isFocused && (
-					<ul className=" items-center gap-4 block absolute w-full z-50">
+					<ul key="SportOptions" className=" items-center gap-4 block absolute w-full z-50">
 						{options.map(({ id, name }) => (
 							<li
 								onClick={() => onValueChange(id, name)}

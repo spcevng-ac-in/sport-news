@@ -8,6 +8,7 @@ import { useTrendingNewsDetailDispatch, useTrendingNewsDetailState } from '../..
 import { fetchTrendingNewsDetail } from '../../context/trendingnewsdetail/action';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 const TrendingNewsDetail = (args: any) => {
     // console.log("Data -> ", args.data);
@@ -125,7 +126,12 @@ const TrendingNewsDetail = (args: any) => {
                                     >
                                         {selectedNews.title}
                                     </Dialog.Title>
-                                    <IconButton
+                                    <XMarkIcon
+                          className="h-6 w-6"
+                          onClick={closeModal}
+                          aria-hidden="true"
+                        />
+                                    {/* <IconButton
                                         aria-label="close"
                                         onClick={closeModal}
                                         sx={{
@@ -136,7 +142,7 @@ const TrendingNewsDetail = (args: any) => {
                                         }}
                                     >
                                         <CloseIcon />
-                                    </IconButton>
+                                    </IconButton> */}
                                     <div className="mt-2">
                                         <div>
                                             <img

@@ -1,5 +1,5 @@
 // import { ArrowDownIcon } from 'Icons'; //you can use your icons
-import { ArrowDownIcon } from '@heroicons/react/24/outline'
+import { ArrowDownIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
 import React, { useEffect, useRef } from 'react';
 import cx from 'classnames';
 import { IDropdownProps } from '../../context/favorites/types';
@@ -15,6 +15,7 @@ function DropdownTeam({
 	required,
 	className,
 	tabIndex,
+	setState
 }: IDropdownProps) {
 
 	// const favoritesDispatch = useFavoritesDispatch();
@@ -51,9 +52,9 @@ function DropdownTeam({
 		setSelectedID(selectedID);
 		setSelectedItem(selectedValue);
 		setIsFocused(false);
-		console.log("Update Team:", selectedID, selectedValue);
-		// updateSportSelection(favoritesDispatch, selectedID, selectedValue);
-		// console.log("selected Item:", selectedID);
+		// setFavoriteTeamState(selectedID);
+		// setState(selectedID);
+		setState({id:selectedID,name:selectedValue});
 	};
 	React.useEffect(() => {
 		setIsFocused(false);
@@ -65,9 +66,9 @@ function DropdownTeam({
 		setIsFocused(false);
 	};
 	// console.log("Options:", options);
-	console.log("Selected my team id:", selectedID);
+	// console.log("Selected my team id:", selectedID);
 	return (
-		<div>
+		<div key="DropDownTeam">
 			<div ref={wrapperRef} className="text-nowrap w-full pr-2 border-2 border-[#979797] relative">
 				<div className="flex flex-row items-center">
 					<span className="text-sm text-[#A4A4A4] mb-2">{labelName}</span>
@@ -91,13 +92,13 @@ function DropdownTeam({
 							{selectedItem && selectedItem !== placeHolder ? (
 								<div onClick={(e) => onClear(e)}>Temizle</div>
 							) : (
-								<ArrowDownIcon />
+								<ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
 							)}
 						</div>
 					)}
 				</div>
 				{isFocused && (
-					<ul className=" items-center gap-4 block absolute w-full z-50">
+					<ul key="TeamOptions" className=" items-center gap-4 block absolute w-full z-50">
 						{options.map(({ id, name }) => (
 							<li
 								onClick={() => onValueChange(id, name)}

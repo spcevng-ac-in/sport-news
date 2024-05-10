@@ -3,19 +3,18 @@ import { TrendingNews } from "../../context/trendingnews/types";
 import { useTrendingNewsState } from "../../context/trendingnews/context";
 
 export default function FavoritesItems(props: any) {
-
-    let sportID = props.sportID;
-    if(sportID === undefined)
-        {
-            return <span></span>;
-        }
-    console.log("Selected Sport ID:", sportID);
-    // let trendingNewsDispatch = useTrendingNewsDispatch();
-    // console.log("Trending News Dispatch:", trendingNewsDispatch);
-
+    // console.log("Props:", props);
+    let sport = props.sport;
+    let team = props.team;
+    if (sport === undefined || team === undefined )  {
+        return <span></span>;
+    }
+    // console.log("Selected Sport:", sport);
+    // console.log("Selected Team:", team);
+    
     let trendingNewsState: any = useTrendingNewsState();
     const { trendingNews, isLoading, isError, errorMessage } = trendingNewsState
-    // console.log("Trending News:", trendingNews, isLoading, isError, errorMessage);
+    console.log("Trending News:", trendingNews, isLoading, isError, errorMessage);
     if (trendingNews.length === 0 && isLoading) {
         return <span>Trending News Loading...</span>;
     }
@@ -30,12 +29,32 @@ export default function FavoritesItems(props: any) {
     //     if (newsID) fetchTrendingNewsDetail(trendingNewsDetailDispatch, newsID);
 
     // }, []);
-
+    // console.log("Sport ->", sport);
+    // console.log("Team ->", team);
     let selectedNews = trendingNews.filter(
         (tempNews: TrendingNews) => {
-            // console.log("tempnews.id", tempNews.id);
-            console.log("sportID->", sportID);
-            return (tempNews.sport.id === Number(sportID))
+            // console.log("Temp News:", tempNews);
+            // console.log("tempNews.sport.id ---", tempNews.sport.id)
+            // console.log("tempNews.teams[0].id ---", tempNews.teams[0].id )
+            // console.log("tempNews.teams[1].id ---", tempNews.teams[1].id )
+            // if(tempNews.sport.id === Number(sport.id)){
+            //     if(tempNews.teams.length!=0){
+            //         if(tempNews.teams[0].id === team.id || tempNews.teams[1].id === team.id){
+            //             return true;
+            //         }
+            //     }
+            // }
+            // return false;
+            if(tempNews.sport.id !== sport.id )
+                return false;
+            let tempNewsTeam = tempNews.teams.filter(item =>{
+                return (team.id === item.id);
+            });
+            if(tempNewsTeam.length === 0)
+                return false;
+
+            return true;
+            // return ((tempNews.sport.id === Number(sport.id)) && tempNews.teams.length!=0 && (tempNews.teams[0].id === team.id || tempNews.teams[1].id === team.id))
         }
     );
     // console.log("Selcted News:", selectedNews);
@@ -58,7 +77,7 @@ export default function FavoritesItems(props: any) {
                                     <h4 className="m-1 font-bold tracking-tight text-blue-900 dark:text-white text-left">
                                         {news.title}
                                     </h4>
-                                    <div className="m-1 h-24 text-wrap text-xs text-gray-600 text-left">
+                                    <div className="m-1 text-wrap text-xs text-gray-600 text-left">
                                         {news.summary}
                                     </div>
                                     <div className=" flex-right justify-between m-1 mt-4 text-nowrap text-xs text-gray-600 text-right">

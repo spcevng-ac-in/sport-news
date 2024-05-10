@@ -10,29 +10,32 @@ import { TrendingNewsDetailProvider } from "./context/trendingnewsdetail/context
 import { SportProvider } from "./context/sports/context";
 import { FavoritesProvider } from "./context/favorites/context";
 import { TeamsProvider } from "./context/teams/context";
+import { PreferencesProvider } from "./context/preferences/context";
 
 
 const App = () => {
   const { theme } = useContext(ThemeContext)
   return (
     <div className={`h-screen w-full mx-auto py-2 ${theme === "dark" ? "dark" : ""}`}>
-      <FavoritesProvider>
-        <SportProvider>
-          <TeamsProvider>
-            <TrendingNewsDetailProvider>
-              <TrendingNewsProvider>
-                <MatchesProvider>
-                  <MatchesDetailProvider>
-                    <Suspense fallback={<>Loading...</>}>
-                      <RouterProvider router={router} />
-                    </Suspense>
-                  </MatchesDetailProvider>
-                </MatchesProvider>
-              </TrendingNewsProvider>
-            </TrendingNewsDetailProvider>
-          </TeamsProvider>
-        </SportProvider>
-      </FavoritesProvider>
+      <PreferencesProvider>
+        <FavoritesProvider>
+          <SportProvider>
+            <TeamsProvider>
+              <TrendingNewsDetailProvider>
+                <TrendingNewsProvider>
+                  <MatchesProvider>
+                    <MatchesDetailProvider>
+                      <Suspense fallback={<>Loading...</>}>
+                        <RouterProvider router={router} />
+                      </Suspense>
+                    </MatchesDetailProvider>
+                  </MatchesProvider>
+                </TrendingNewsProvider>
+              </TrendingNewsDetailProvider>
+            </TeamsProvider>
+          </SportProvider>
+        </FavoritesProvider>
+      </PreferencesProvider>
     </div>
   );
 }
