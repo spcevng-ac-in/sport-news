@@ -1,24 +1,25 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useState } from 'react'
-import { useForm, SubmitHandler } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { TrendingNews } from '../../context/trendingnews/types';
 import { useTrendingNewsDetailDispatch, useTrendingNewsDetailState } from '../../context/trendingnewsdetail/context';
 import { fetchTrendingNewsDetail } from '../../context/trendingnewsdetail/action';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 const TrendingNewsDetail = (args: any) => {
-    // console.log("Data -> ", args.data);
-    // let news: TrendingNews = args.data;
-    // console.log("News:", news);
-    // let newsID: any = news.id;
-    // console.log("News ID:", newsID);
+
+    const navigate = useNavigate();
+    const [isOpen, setIsOpen] = useState(true)
+    const closeModal = () => {
+        setIsOpen(false)
+        navigate("../")
+    }
+    // const openModal = () => {
+    //     setIsOpen(true)
+    // }
 
     const params = useParams();
-    console.log("Params:", params);
+    // console.log("Params:", params);
     const newsID = params.articleID;
 
     // const formatDate = (isoDate: string) => {
@@ -48,7 +49,7 @@ const TrendingNewsDetail = (args: any) => {
     // console.log("Trending News Detail Dispatch:", trendingNewsDetailDispacth);
     const trendingNewsDetailState = useTrendingNewsDetailState();
     let { trendingNewsDetail, isLoading, isError, errorMessage } = trendingNewsDetailState;
-    console.log("Trending News Details:", trendingNewsDetail);
+    // console.log("Trending News Details:", trendingNewsDetail);
 
     if (trendingNewsDetail.length === 0 && isLoading) {
         return <span>Trending News Loading...</span>;
@@ -60,8 +61,8 @@ const TrendingNewsDetail = (args: any) => {
 
     let selectedNews = trendingNewsDetail.filter(
         (tempNews) => {
-            console.log("tempnews.id", tempNews.id);
-            console.log("newsID->", newsID);
+            // console.log("tempnews.id", tempNews.id);
+            // console.log("newsID->", newsID);
             return (tempNews.id === Number(newsID))
         }
     )?.[0];
@@ -69,19 +70,6 @@ const TrendingNewsDetail = (args: any) => {
     if (selectedNews === undefined) {
         return <span>Trending News Detail Loading</span>
     }
-
-
-    const navigate = useNavigate();
-
-    const [isOpen, setIsOpen] = useState(true)
-    const closeModal = () => {
-        setIsOpen(false)
-        navigate("../")
-    }
-    // const openModal = () => {
-    //     setIsOpen(true)
-    // }
-
     return (
         // isOpen?(
         //     <>
@@ -127,10 +115,10 @@ const TrendingNewsDetail = (args: any) => {
                                         {selectedNews.title}
                                     </Dialog.Title>
                                     <XMarkIcon
-                          className="h-6 w-6"
-                          onClick={closeModal}
-                          aria-hidden="true"
-                        />
+                                        className="h-6 w-6"
+                                        onClick={closeModal}
+                                        aria-hidden="true"
+                                    />
                                     {/* <IconButton
                                         aria-label="close"
                                         onClick={closeModal}

@@ -1,14 +1,13 @@
 import { API_ENDPOINT } from "../../config/constants";
-import { usePreferencesState } from "./context";
-import { PreferencesAction, PreferencesDispatch } from "./types";
+
+import { PreferencesAction, PreferencesDispatch, PreferencesState } from "./types";
 
 export const fetchPreferences: any = async (
     dispatch: PreferencesDispatch
 ) => {
     try {
         dispatch({ type: PreferencesAction.FETCH_PREFERENCES_REQUEST })
-        const token: string | null = localStorage.getItem("authToken") ?? "";
-        console.log("Fetch preferences:", `${API_ENDPOINT}/user/preferences`);
+        const token = localStorage.getItem("authToken") ?? "";
         const res = await fetch(`${API_ENDPOINT}/user/preferences`, {
             method: 'GET',
             headers: {
@@ -22,10 +21,10 @@ export const fetchPreferences: any = async (
             throw new Error("Failed to Fetch Matche Detail")
         }
         const data = await res.json();
-
+        console.log("Fetch Preference-1:", data.preferences);
         dispatch({
             type: PreferencesAction.FETCH_PREFERENCES_SUCCESS,
-            payload: data
+            payload: data.preferences
         })
         return data;
     } catch (error) {
@@ -38,14 +37,16 @@ export const fetchPreferences: any = async (
 }
 
 export const updatePreferences: any = async (
-    dispatch: PreferencesDispatch
+    dispatch: PreferencesDispatch, preference: PreferencesState
 ) => {
 
-    const preference = usePreferencesState();
-    console.log("update preferences:", preference);
+    // const preference = usePreferencesState();
+    console.log("TO update preferences:", preference);
     try {
         dispatch({ type: PreferencesAction.FETCH_PREFERENCES_REQUEST })
-        const token: string | null = localStorage.getItem("authToken");
+        
+        const token = localStorage.getItem("authToken") ?? "";
+        console.log("Token:", token);
         const res = await fetch(`${API_ENDPOINT}/user/preferences`, {
             method: 'PATCH',
             headers: {
@@ -54,15 +55,16 @@ export const updatePreferences: any = async (
             },
             body: JSON.stringify({ preferences: preference }),
         });
-
+        
         if (!res.ok) {
             throw new Error("Failed to Update Preferences")
         }
         const data = await res.json();
-
+        console.log("Updated data response:", data.preferences);
+        // fetchPreferences(dispatch);
         dispatch({
             type: PreferencesAction.FETCH_PREFERENCES_SUCCESS,
-            payload: data
+            payload: data.preferences
         })
         return data;
     } catch (error) {

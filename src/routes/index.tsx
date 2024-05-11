@@ -6,6 +6,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import DashboardContainer from "../pages/dashboard/DashboardContainer";
 import Dashboard from "../pages/dashboard";
 import TrendingNewsDetail from "../pages/TrendingNews/TrendingNewsDetaiil";
+import { Logout } from "@mui/icons-material";
+import Signout from "../pages/signout";
 
 const Signin = React.lazy(() => import("../pages/signin"));
 const Signup = React.lazy(() => import("../pages/signup"));
@@ -37,10 +39,10 @@ const router = createBrowserRouter([
         element: <Signup />
     },
 
-    // {
-    //     path: "/logout",
-    //     element: <Logout />
-    // },
+    {
+        path: "/logout",
+        element: <Signout />
+    },
     // {
     //     path: "/notfound",
     //     element: <Notfound />

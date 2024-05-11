@@ -6,7 +6,7 @@ import { useMatcheDetailDispatch, useMatcheDetailState } from "../../context/mat
 import { fetchMatcheDetail } from "../../context/matchdetail/actions";
 import { MatchDetail } from "../../context/matchdetail/types";
 
-export default function MatchListItems(props: Matches) {
+export default function MatchListItems() {
 
     const matchDetailState: any = useMatcheDetailState();
     const matchDetailDispatch = useMatcheDetailDispatch();
@@ -24,10 +24,19 @@ export default function MatchListItems(props: Matches) {
     // console.log("Matches:", matches);
     const { matchDetail, isLoading2, isError2, errorMessage2 } = matchDetailState;
     // console.log("All Match Detail:", matchDetail);
+
+    let selectedMatchs = matches.filter(
+        (match: Matches) => {
+            // console.log("tempnews.id", tempNews.id);
+            // console.log("sportID->", sportID);
+            return (match.isRunning === true)
+        }
+    );
+
     return (
-        <> 
+        <>
             {
-                matches.map((match: any) => {
+                selectedMatchs.map((match: any) => {
                     let keys: string[] = []
                     let values: number[] = []
 
@@ -66,34 +75,39 @@ export default function MatchListItems(props: Matches) {
 
                     return (
                         <div>
-                            <Link
+                            <div
                                 key={match.id}
-                                to={`${match.id}`}
-                                className="min-w-60 m-1 block p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-                            >
-                                <h5 className="tracking-tight text-gray-900 dark:text-white text-left">
+                                // to={`${match.id}`}
+                                className="min-w-60 m-1 block p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" >
+                                <h5 className="flex justify-between tracking-tight text-gray-900 dark:text-white text-left">
                                     {match.sportName}
+                                    <Link to="#" >
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                        </svg>
+                                    </Link>
                                 </h5>
                                 <div className="text-nowrap text-xs text-gray-600 text-left">
                                     {match.location}
                                 </div>
                                 <br />
-                                <div className="flex justify-between">
+
+                                <div className="flex justify-between space-y-0">
                                     <div className="justify-self-auto text-purple-950 text-left text-sm" >{keys[0]}</div>
-                                    <div className="justify-self-auto mr-0">{values[0]}</div>
-                                </div>
-                                <br />
-                                <div className="flex justify-between">
-                                    <div className="text-purple-950 text-left text-sm" >{keys[1]}</div>
-                                    <div>{values[1]}</div>
+                                    <div className="justify-self-auto mr-1">{values[0]}</div>
                                 </div>
 
-                            </Link >
+                                <div className="flex justify-between space-y-0">
+                                    <div className="text-purple-950 text-left text-sm" >{keys[1]}</div>
+                                    <div className="justify-self-auto mr-1">{values[1]}</div>
+                                </div>
+                            </div>
+
                         </div >
                     )
                 }
                 )}
-        
+
         </>
     );
 }

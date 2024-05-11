@@ -12,11 +12,17 @@ const Tabs: React.FC<Props> = ({ children }) => {
     <div className="overflow-auto">
       <div>
         <ul className="flex list-none inline">
+        <TabTitle
+              key={0}
+              title={"You Likes!"}
+              index={0}
+              setSelectedTab={setSelectedTab}
+            />
           {children.map((item, index) => (
             <TabTitle
-              key={index}
+              key={index+1}
               title={item.props.title}
-              index={index}
+              index={index+1}
               setSelectedTab={setSelectedTab}
             />
           ))}
