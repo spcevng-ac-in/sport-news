@@ -19,7 +19,7 @@ export const fetchTeams = async (
             throw new Error("Failed to Fetch Teams")
         }
         const data = await res.json();
-        console.log("Teams Data:", data);
+        // console.log("Teams Data:", data);
 
         dispatch({
             type: TeamAction.FETCH_TEAM_SUCCESS,

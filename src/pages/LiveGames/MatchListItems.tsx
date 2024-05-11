@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import { useMatchesState } from "../../context/matches/context";
 import { Matches } from "../../context/matches/types";
 import { useEffect } from "react";
 import { useMatcheDetailDispatch, useMatcheDetailState } from "../../context/matchdetail/context";
 import { fetchMatcheDetail } from "../../context/matchdetail/actions";
 import { MatchDetail } from "../../context/matchdetail/types";
+
 
 export default function MatchListItems() {
 
@@ -27,12 +27,18 @@ export default function MatchListItems() {
 
     let selectedMatchs = matches.filter(
         (match: Matches) => {
-            // console.log("tempnews.id", tempNews.id);
-            // console.log("sportID->", sportID);
             return (match.isRunning === true)
         }
     );
-
+const updateScore = async (matchID: number) => {
+    // const matchDetailDispatch = useMatcheDetailDispatch();
+    console.log("Update score for:", matchID);
+    fetchMatcheDetail(matchDetailDispatch, matchID);
+    let targetedMatchDetail: MatchDetail = matchDetail.filter((matchDetail:MatchDetail) =>{
+        return (matchDetail.id === matchID) 
+    })[0];
+    console.log(targetedMatchDetail.score);
+}
     return (
         <>
             {
@@ -60,19 +66,15 @@ export default function MatchListItems() {
 
                                 Object.keys(currentMatchScore || {}).map((keyScore, valueScore) => {
                                     if (currentMatchScore) {
-                                        // console.log("Team Name:", keyScore);
+                                        console.log("Team Name:", keyScore);
                                         keys.push(keyScore);
-                                        // console.log("Team Score:", valueScore);
-                                        values.push(valueScore);
+                                        console.log("Team Score:", currentMatchScore[keyScore]);
+                                        values.push(currentMatchScore[keyScore]);
                                     }
-
-
                                 });
                             }
                         }
                     });
-
-
                     return (
                         <div>
                             <div
@@ -81,11 +83,16 @@ export default function MatchListItems() {
                                 className="min-w-60 m-1 block p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" >
                                 <h5 className="flex justify-between tracking-tight text-gray-900 dark:text-white text-left">
                                     {match.sportName}
-                                    <Link to="#" >
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <div 
+                                    // to={match.id} 
+                                    key={match.id} className="hover:text-red-600"
+                                    onClick={() => updateScore(match.id)}
+                                    >
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
                                         </svg>
-                                    </Link>
+                                    </div>
+
                                 </h5>
                                 <div className="text-nowrap text-xs text-gray-600 text-left">
                                     {match.location}
@@ -107,7 +114,6 @@ export default function MatchListItems() {
                     )
                 }
                 )}
-
         </>
     );
 }

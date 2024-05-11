@@ -69,11 +69,11 @@ function DropdownTeam({
 	// console.log("Selected my team id:", selectedID);
 	return (
 		<div key="DropDownTeam">
-			<div ref={wrapperRef} className="text-nowrap w-full pr-2 border-2 border-[#979797] relative">
+			<div ref={wrapperRef} className="text-nowrap w-full pr-2 border-2 border-[#979797] relative  rounded-md p-1">
 				<div className="flex flex-row items-center">
-					<span className="text-sm text-[#A4A4A4] mb-2">{labelName}</span>
+					<span className="text-sm text-[#A4A4A4]">{labelName}</span>
 					{required && (
-						<span className="text-[20px] text-[#FF0000] ml-2 top-0 ">*</span>
+						<span className="text-[20px] text-[#FF0000] top-0 ">*</span>
 					)}
 				</div>
 				<div
@@ -90,7 +90,7 @@ function DropdownTeam({
 					{type === 'arrow-down' && (
 						<div className="right-3 transform -translate-y-1/2 z-10 absolute top-5">
 							{selectedItem && selectedItem !== placeHolder ? (
-								<div onClick={(e) => onClear(e)}>Temizle</div>
+								<div onClick={(e) => onClear(e)}></div>
 							) : (
 								<ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
 							)}

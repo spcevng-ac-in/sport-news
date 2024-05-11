@@ -38,7 +38,7 @@ export default function TrendingNews() {
     }
 
     // console.log("Sport Items:", (sports));
-
+    
     return (
         <>
             <Disclosure as="nav" className="border-b border-slate-200">

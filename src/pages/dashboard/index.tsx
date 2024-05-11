@@ -15,11 +15,12 @@ const Dashboard = () => {
           <div>
             <LiveGames />
             </div>
+            <hr/>
             <div className="flex">
             <div className="flex-left">
             <TrendingNews />
             </div>
-            <div className="flex-right w-1/4">
+            <div className="flex-right w-1/4 m-2">
             <Favorites />
             </div>
             </div>

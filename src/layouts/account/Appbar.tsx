@@ -48,7 +48,7 @@ const Appbar = () => {
             </div>
             <div className="hidden md:block">
               <div className="ml-4 flex items-center md:ml-6">
-                <div className="py-16">
+                {/* <div className="py-16">
                   <Switch
                     checked={enabled}
                     onChange={toggleTheme}
@@ -66,7 +66,7 @@ const Appbar = () => {
             bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
                     />
                   </Switch>
-                </div>
+                </div> */}
 
                 <Menu as="div" className="relative ml-3">
                   <div>

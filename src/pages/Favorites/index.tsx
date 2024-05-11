@@ -83,7 +83,7 @@ const Favorites = () => {
 
   return (
     <>
-      <div className="border-2">
+      <div className="border-2 rounded-md">
         <div className="flex justify-start p-2">
           <h2 className="text-2xl font-medium tracking-tight text-slate-700">
             Favorites
@@ -92,12 +92,12 @@ const Favorites = () => {
         <ErrorBoundary>
           <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
 
-            <div className="m-2">
+            <div className="m-2 rounded-md">
               <DropdownSport options={sports} placeHolder="Select Sport" labelName="My Favorite Sport"
                 setState={setFavoriteSportState}
               />
             </div>
-            <div className="m-2">
+            <div className="m-2" rounded-md>
               <DropdownTeam options={selectedTeams} placeHolder="Select Team" labelName="My Favorite Team"
                 setState={setFavoriteTeamState}
               />

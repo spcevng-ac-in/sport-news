@@ -107,30 +107,25 @@ const TrendingNewsDetail = (args: any) => {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
+                                
                                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                                    <Dialog.Title
-                                        as="h3"
-                                        className="text-lg font-medium leading-6 text-gray-900"
-                                    >
-                                        {selectedNews.title}
-                                    </Dialog.Title>
-                                    <XMarkIcon
-                                        className="h-6 w-6"
-                                        onClick={closeModal}
-                                        aria-hidden="true"
-                                    />
-                                    {/* <IconButton
-                                        aria-label="close"
-                                        onClick={closeModal}
-                                        sx={{
-                                            position: 'absolute',
-                                            right: 8,
-                                            top: 8,
-                                            color: (theme) => theme.palette.grey[500],
-                                        }}
-                                    >
-                                        <CloseIcon />
-                                    </IconButton> */}
+                                    <div className='flex justify-between'>
+                                        <div>
+                                            <Dialog.Title
+                                                as="h3"
+                                                className="text-lg font-medium leading-6 text-gray-900"
+                                            >
+                                                {selectedNews.title}
+                                            </Dialog.Title>
+                                        </div>
+                                        <div>
+                                            <XMarkIcon
+                                                className="h-6 w-6"
+                                                onClick={closeModal}
+                                                aria-hidden="true"
+                                            />
+                                        </div>
+                                    </div>
                                     <div className="mt-2">
                                         <div>
                                             <img

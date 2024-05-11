@@ -11,7 +11,7 @@ const Tabs: React.FC<Props> = ({ children }) => {
   return (
     <div className="overflow-auto">
       <div>
-        <ul className="flex list-none inline">
+        <ul className="flex list-none inline flex justify-between">
         <TabTitle
               key={0}
               title={"You Likes!"}

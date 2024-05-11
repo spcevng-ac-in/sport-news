@@ -21,7 +21,7 @@ export const fetchPreferences: any = async (
             throw new Error("Failed to Fetch Matche Detail")
         }
         const data = await res.json();
-        console.log("Fetch Preference-1:", data.preferences);
+        // console.log("Fetch Preference-1:", data.preferences);
         dispatch({
             type: PreferencesAction.FETCH_PREFERENCES_SUCCESS,
             payload: data.preferences
@@ -41,12 +41,12 @@ export const updatePreferences: any = async (
 ) => {
 
     // const preference = usePreferencesState();
-    console.log("TO update preferences:", preference);
+    // console.log("TO update preferences:", preference);
     try {
         dispatch({ type: PreferencesAction.FETCH_PREFERENCES_REQUEST })
         
         const token = localStorage.getItem("authToken") ?? "";
-        console.log("Token:", token);
+        // console.log("Token:", token);
         const res = await fetch(`${API_ENDPOINT}/user/preferences`, {
             method: 'PATCH',
             headers: {
@@ -60,7 +60,7 @@ export const updatePreferences: any = async (
             throw new Error("Failed to Update Preferences")
         }
         const data = await res.json();
-        console.log("Updated data response:", data.preferences);
+        // console.log("Updated data response:", data.preferences);
         // fetchPreferences(dispatch);
         dispatch({
             type: PreferencesAction.FETCH_PREFERENCES_SUCCESS,

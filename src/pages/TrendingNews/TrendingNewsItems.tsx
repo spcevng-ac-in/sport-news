@@ -42,7 +42,7 @@ export default function TrendingNewsItems(props: any) {
     const preferencesState: any = usePreferencesState();
     const { preferences, isLoading2, isError2, errorMessage2 } = preferencesState;
 
-    console.log("Preference 2->", preferences);
+    // console.log("Preference 2->", preferences);
     useEffect(() => {
         fetchPreferences(preferencesDispatch);
     }, []);
@@ -80,17 +80,17 @@ export default function TrendingNewsItems(props: any) {
         // return <span className="text-lg font-bold">News, You Likes!</span>
     }
 
-    console.log("Selcted News 1:", selectedNews);
+    // console.log("Selcted News 1:", selectedNews);
     if (selectedNews === undefined || selectedNews.length === 0) {
         return <span className="text-lg font-bold">No Trending News for Now!</span>
     }
 
-    let selectedTabID = "tab" + sportID;
-    let selectedTab = document.getElementById(selectedTabID) || undefined;
-    if (selectedTab !== undefined) {
-        selectedTab.className = "font-bold border-y-purple-950";
-        console.log("selected tab:", selectedTab?.className);
-    }
+    // let selectedTabID = "tab" + sportID;
+    // let selectedTab = document.getElementById(selectedTabID) || undefined;
+    // if (selectedTab !== undefined) {
+    //     // selectedTab.className = "font-bold border-y-purple-950";
+    //     console.log("selected tab:", selectedTab.className);
+    // }
     return (
         <>
             <div className="flex-col w-full">

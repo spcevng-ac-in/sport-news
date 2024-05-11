@@ -18,7 +18,7 @@ const Preferences = (args: any) => {
     const preferencesDispatch = usePreferencesDispatch();
     let preferencesState: any = usePreferencesState();
     const { preferences, isLoading22, isError22, errorMessage22 } = preferencesState;
-    console.log("Preference 1-> ", preferences);
+    // console.log("Preference 1-> ", preferences);
 
     const [isOpen, setIsOpen] = useState(false)
     const closeModal = () => {
