@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import React, { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline';
 import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -13,13 +13,18 @@ import { fetchPreferences, updatePreferences } from '../../context/preferences/a
   <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
 </svg> */}
 
-const Preferences = (args: any) => {
+const Preferences = () => {
+    const userData = localStorage.getItem("userData") ?? "";
+    // console.log("User Data:", userData);
+
+    if(userData === undefined || userData.length === 0)
+        return (<></>)
 
     const preferencesDispatch = usePreferencesDispatch();
     let preferencesState: any = usePreferencesState();
     const { preferences, isLoading22, isError22, errorMessage22 } = preferencesState;
-    // console.log("Preference 1-> ", preferences);
-
+    console.log("Preferences:", preferences, isLoading22, isError22, errorMessage22);
+    
     const [isOpen, setIsOpen] = useState(false)
     const closeModal = () => {
         setIsOpen(false)
@@ -50,7 +55,7 @@ const Preferences = (args: any) => {
     let teamState: any = useTeamsState();
 
     const { teams, isLoading2, isError2, errorMessage2 } = teamState;
-    // console.log("Teams:", teams, isLoading2, isError2, errorMessage2);
+    console.log("Teams:", teams, isLoading2, isError2, errorMessage2);
     // console.log("Teams Length:", teams.length);
 
 
@@ -83,37 +88,39 @@ const Preferences = (args: any) => {
 
     // console.log("Teams Items:", (teams));
 
-    
-    const handleOnChangeSport = (event: React.InputHTMLAttributes<HTMLInputElement>) => {
+
+    const handleOnChangeSport = (event: any) => {
         // console.log(event.target.checked);
         // console.log("Before Preferences:", preferences.sports);
-        
-        if (event.target.checked) {
-            preferences?.sports.push(Number(event.target.id));
-         }
+        // let element :HTMLInputElement= event.target ;
+        let element = (event.target as HTMLInputElement)
+        if (element.checked) {
+            preferences?.sports.push(Number(element.id));
+        }
         else {
-            preferences.sports = preferences?.sports.filter(item => item !== Number(event.target.id));
+            preferences.sports = preferences?.sports.filter((item: number) => item !== Number(element.id));
         }
         // console.log("After:", preferences.sports);
-        
+
     }
 
-    const handleOnChangeTeam = (event: React.InputHTMLAttributes<HTMLInputElement>) => {
+    const handleOnChangeTeam = (event: any) => {
         // console.log(event.target.checked);
         // console.log("Before Preferences:", preferences.teams);
-        
-        if (event.target.checked) {
-            preferences.teams.push(Number(event.target.id));
-         }
+        let element = (event.target as HTMLInputElement)
+        if (element.checked) {
+            preferences.teams.push(Number(element.id));
+        }
         else {
-            preferences.teams = preferences.teams.filter(item => item !== Number(event.target.id));
+            preferences.teams = preferences.teams.filter((item: number) => item !== Number(element.id));
         }
         // console.log("After:", preferences.sports);
-        
+
     }
 
-
+   
     return (
+
         <>
             <Cog6ToothIcon onClick={openModal} className="w-8 dark:bg-gray-800 dark:text-white bg-white  text-gray-400  dark:hover:text-blue-500 hover:text-blue-600" />
             <Transition appear show={isOpen} as={Fragment}>
@@ -183,7 +190,7 @@ const Preferences = (args: any) => {
                                                                             className="mx-2 w-4"
                                                                             type="checkbox"
                                                                             value={sport.name}
-                                                                            
+
                                                                         />
                                                                         <label
                                                                             className="align-middle text-nowrap"
@@ -224,7 +231,7 @@ const Preferences = (args: any) => {
                                                                             value={team.name}
                                                                             onChange={handleOnChangeTeam}
                                                                             defaultChecked={preferences?.teams?.includes(Number(team.id))}
-                                                                            
+
                                                                         />
 
                                                                         <label
@@ -244,7 +251,7 @@ const Preferences = (args: any) => {
                                                     }
                                                 </div>
                                             </div>
-                                           
+
                                         </form>
                                     </div>
                                 </Dialog.Panel>

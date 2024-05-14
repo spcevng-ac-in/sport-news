@@ -1,6 +1,3 @@
-import { Sport } from "../sports/types";
-import { Team } from "../teams/types";
-
 export interface Preferences{
     sports: number[];
     teams: number[];

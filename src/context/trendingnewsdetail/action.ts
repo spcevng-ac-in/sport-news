@@ -2,9 +2,11 @@ import {TrendingNewsDetailDispatch, TrendingNewsDetailAvailableAction } from "./
 import { API_ENDPOINT } from "../../config/constants";
 
 
+
 export const fetchTrendingNewsDetail = async (
     dispatch: TrendingNewsDetailDispatch, newsID: any
 ) => {
+    // let navigate = useNavigate();
     try {
         dispatch({ type: TrendingNewsDetailAvailableAction.FETCH_TRENDINGNEWSDETAIL_REQUEST })
         const res = await fetch(`${API_ENDPOINT}/articles/${newsID}`, {
@@ -25,6 +27,8 @@ export const fetchTrendingNewsDetail = async (
 
     } catch (error) {
         console.log(`Operation Failed:${error}`)
+        // navigate("/signin");
+        
         dispatch({
             type: TrendingNewsDetailAvailableAction.FETCH_TRENDINGNEWSDETAIL_FAILURE,
             payload: "Unable to Load Trending News Detail"

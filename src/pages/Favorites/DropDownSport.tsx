@@ -1,12 +1,12 @@
 // import { ArrowDownIcon } from 'Icons'; //you can use your icons
-import { ArrowDownIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
+import { ChevronUpDownIcon } from '@heroicons/react/24/outline'
 import React, { useEffect, useRef } from 'react';
 import cx from 'classnames';
 import { IDropdownProps } from '../../context/favorites/types';
 
 function DropdownSport({
 	labelName,
-	name,
+	// name,
 	options,
 	placeHolder,
 	type,
@@ -23,6 +23,7 @@ function DropdownSport({
 	const [isFocused, setIsFocused] = React.useState(false);
 	const [selectedItem, setSelectedItem] = React.useState<number | string>();
 	const [selectedID, setSelectedID] = React.useState<number | string>();
+	console.log("Selected ID:", selectedID);
 	const wrapperRef = useRef<any>(null);
 
 	// useEffect(() => {

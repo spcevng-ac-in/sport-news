@@ -6,7 +6,7 @@ import { useTrendingNewsDetailDispatch, useTrendingNewsDetailState } from '../..
 import { fetchTrendingNewsDetail } from '../../context/trendingnewsdetail/action';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
-const TrendingNewsDetail = (args: any) => {
+const TrendingNewsDetail = () => {
 
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(true)
@@ -22,23 +22,23 @@ const TrendingNewsDetail = (args: any) => {
     // console.log("Params:", params);
     const newsID = params.articleID;
 
-    // const formatDate = (isoDate: string) => {
-    //     try{
-    //         console.log("Date -> ", isoDate);
-    //         const dateObj = new Date(isoDate);
-    //         const year = dateObj.getFullYear();
-    //         const month = String(dateObj.getMonth() + 1).padStart(2, "0");
-    //         const day = String(dateObj.getDate()).padStart(2, "0");
-    //         return `${year}-${month}-${day}`;
-    //     }
-    //     catch(error)
-    //     {
-    //         console.log("Date Formate error -", error);
+    const formatDate = (isoDate: string) => {
+        try{
+            console.log("Date -> ", isoDate);
+            const dateObj = new Date(isoDate);
+            const year = dateObj.getFullYear();
+            const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+            const day = String(dateObj.getDate()).padStart(2, "0");
+            return `${year}-${month}-${day}`;
+        }
+        catch(error)
+        {
+            console.log("Date Formate error -", error);
 
-    //     }
-    //     return isoDate;
+        }
+        return isoDate;
 
-    // };
+    };
 
     const trendingNewsDetailDispatch = useTrendingNewsDetailDispatch();
     useEffect(() => {
@@ -136,7 +136,7 @@ const TrendingNewsDetail = (args: any) => {
                                         </div>
                                         <div className="flex justify-between">
                                             <div className="justify-self-auto text-purple-950 text-left text-sm" >{selectedNews.sport.name}</div>
-                                            {/* <div className="justify-self-auto mr-0">{formatDate(selectedNews.date)}</div> */}
+                                            <div className="justify-self-auto mr-0">{formatDate(selectedNews.date)}</div>
                                         </div>
                                         <div className='text-justify'>
                                             {selectedNews.content}

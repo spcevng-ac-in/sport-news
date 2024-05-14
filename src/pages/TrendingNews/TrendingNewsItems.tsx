@@ -1,16 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTrendingNewsState } from "../../context/trendingnews/context";
 import { TrendingNews } from "../../context/trendingnews/types";
 import { usePreferencesDispatch, usePreferencesState } from "../../context/preferences/context";
 import { Team } from "../../context/teams/types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchPreferences } from "../../context/preferences/actions";
 
 export default function TrendingNewsItems(props: any) {
+    let navigate = useNavigate();
     let sportID = props.sportID;
+    let [favoriteNews, SetFavoriteNews] = useState<number[]>([]);
+
     // console.log("Sport ID:---------->", sportID);
     // let trendingNewsDispatch = useTrendingNewsDispatch();
     // console.log("Trending News Dispatch:", trendingNewsDispatch);
+
+    const userData = localStorage.getItem("userData") ?? "";
+    // console.log("User Data:", userData);
+
 
     let trendingNewsState: any = useTrendingNewsState();
     const { trendingNews, isLoading, isError, errorMessage } = trendingNewsState
@@ -41,15 +48,25 @@ export default function TrendingNewsItems(props: any) {
     const preferencesDispatch = usePreferencesDispatch();
     const preferencesState: any = usePreferencesState();
     const { preferences, isLoading2, isError2, errorMessage2 } = preferencesState;
+    console.log("Preferences:", preferences, isLoading2, isError2, errorMessage2);
 
-    // console.log("Preference 2->", preferences);
-    useEffect(() => {
-        fetchPreferences(preferencesDispatch);
-    }, []);
+    try {
+        useEffect(() => {
+            // console.log("Call fetchPreferences");
+            if (userData !== undefined && userData.length !== 0)
+                fetchPreferences(preferencesDispatch);
+        }, [preferencesDispatch, userData]);
+    }
+    catch (error) {
+        navigate("/logout");
+    }
 
 
+    if ((userData === undefined || userData.length === 0) && sportID === 0) {
+        selectedNews = trendingNews;
+    }
 
-    if (sportID == 0) {
+    if (userData !== undefined && userData.length !== 0 && sportID == 0) {
         if (preferences?.sport?.length === 0 && preferences?.teams?.length === 0)
             return <span className="text-lg font-bold">Select Your Preferences!</span>
         selectedNews = trendingNews.filter(
@@ -91,6 +108,50 @@ export default function TrendingNewsItems(props: any) {
     //     // selectedTab.className = "font-bold border-y-purple-950";
     //     console.log("selected tab:", selectedTab.className);
     // }
+
+    let tempFavoriteNews = localStorage.getItem("favoriteNews");
+    if (tempFavoriteNews) {
+        favoriteNews = JSON.parse(tempFavoriteNews);
+    }
+    const updateFavoritesNews = (newsID: number) => {
+        console.log("Before Favorite Matches State", favoriteNews);
+        if (favoriteNews) {
+            // const updateFavoriteMatches = JSON.parse(favoriteMatches);
+            // console.log("Before Favorite Matches", updateFavoriteMatches);
+            if (favoriteNews.includes(newsID)) {
+                const index = favoriteNews.indexOf(newsID);
+                index > -1 ? favoriteNews.splice(index, 1) : "";
+            } else {
+                favoriteNews.push(newsID);
+            }
+            localStorage.setItem("favoriteNews", JSON.stringify(favoriteNews));
+            SetFavoriteNews(favoriteNews);
+            console.log("After Favorite News", favoriteNews);
+        } else {
+            console.log("First News ID: ", newsID);
+            localStorage.setItem("favoriteNews", JSON.stringify([newsID]));
+            SetFavoriteNews([newsID]);
+        }
+        console.log("Favorite News State", favoriteNews);
+    }
+
+    const formatDate = (isoDate: string) => {
+        try {
+            console.log("Date -> ", isoDate);
+            const dateObj = new Date(isoDate);
+            const year = dateObj.getFullYear();
+            const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+            const day = String(dateObj.getDate()).padStart(2, "0");
+            return `${year}-${month}-${day}`;
+        }
+        catch (error) {
+            console.log("Date Formate error -", error);
+
+        }
+        return isoDate;
+
+    };
+
     return (
         <>
             <div className="flex-col w-full">
@@ -106,12 +167,24 @@ export default function TrendingNewsItems(props: any) {
                                 <div className="w-3/4">
                                     <h6 className="flex justify-between m-1 font-bold tracking-tight text-gray-900 dark:text-white text-left">
                                         {news.sport.name}
-                                        {/* <Link onClick={(event) => alert(event.target.id)} >
-                                            <svg id={news.id} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                            </svg>
+                                        <div
+                                            // to={match.id} 
+                                            key={news.id} className="hover:text-red-600"
+                                            onClick={() => updateFavoritesNews(news.id)}
+                                        >
+                                            {
+                                                favoriteNews.includes(news.id) ? (
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" className="w-6 h-6">
+                                                        <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                                                    </svg>
+                                                ) : (
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                                    </svg>
+                                                )
+                                            }
 
-                                        </Link> */}
+                                        </div>
                                     </h6>
                                     <h2 className="m-1 text-xl font-bold tracking-tight text-blue-900 dark:text-white text-left">
                                         {news.title}
@@ -120,7 +193,7 @@ export default function TrendingNewsItems(props: any) {
                                         {news.summary}
                                     </div>
                                     <div className=" flex justify-between m-1 mt-4 text-nowrap text-xs text-gray-600 text-left">
-                                        {news.date}
+                                        <div className="justify-self-auto mr-0">{formatDate(news.date)}</div>
                                         {/* <TrendingNewsDetail data={news} /> */}
                                         <Link to={`${news.id}`}>
                                             <p className="underline hover:text-blue-600 transiton duration-400">

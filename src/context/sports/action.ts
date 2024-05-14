@@ -1,7 +1,9 @@
+
 import { API_ENDPOINT } from "../../config/constants";
 import { SportAction, SportDispatch } from "./types";
 
-
+// let navigate = useNavigate();
+    
 export const fetchSports = async (
     dispatch: SportDispatch,
 ) => {
@@ -26,6 +28,7 @@ export const fetchSports = async (
 
     } catch (error) {
         console.log(`Operation Failed:${error}`)
+        // navigate("/signin");
         dispatch({
             type: SportAction.FETCH_SPORT_FAILURE,
             payload: "Unable to Load Sports"

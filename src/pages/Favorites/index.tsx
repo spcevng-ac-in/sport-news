@@ -36,7 +36,7 @@ const Favorites = () => {
   let teamState: any = useTeamsState();
 
   const { teams, isLoading2, isError2, errorMessage2 } = teamState;
-  // console.log("Teams:", teams, isLoading2, isError2, errorMessage2);
+  console.log("Teams:", teams, isLoading2, isError2, errorMessage2);
   // console.log("Teams Length:", teams.length);
 
 

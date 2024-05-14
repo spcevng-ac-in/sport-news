@@ -1,0 +1,21 @@
+import { Link } from 'react-router-dom'
+
+export default function NotFound() {
+  return (
+    <div className='flex flex-col justify-center items-center mt-16'>
+      <h2 className='text-3xl font-sans text-red-600 font-bold'>404 Not Found</h2>
+      <div className='mt-4'>
+      <Link to="/">
+        <div className="mt-8">
+           <button
+             id="backToDashboardButton"
+             type="submit"
+             className="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray"
+           > Back to Dashboard
+           </button>
+         </div>
+      </Link>
+      </div>
+    </div>
+  )
+}

@@ -2,7 +2,7 @@ import React, { createContext, useContext, useReducer } from "react";
 import { TeamDispatch, TeamsState, initialTeamState } from "./types";
 import { TeamReducer } from "./reducer";
 
-const TeamsStateContext = createContext<TeamsState>(initialTeamState);
+const TeamsStateContext = createContext<TeamsState | undefined>(initialTeamState);
 const TeamsDispatchContext = createContext<TeamDispatch>(() => {});
 
 

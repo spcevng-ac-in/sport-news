@@ -1,12 +1,11 @@
-import React, { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import { useSportDispatch, useSportState } from "../../context/sports/context";
 import { fetchSports } from "../../context/sports/action";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import Tabs from "./Tabs";
 import Tab from "./Tab";
 import TrendingNewsItems from "./TrendingNewsItems";
 import { Sport } from "../../context/sports/types";
-import TabTitle from "./TabTitle";
 
 
 
@@ -38,9 +37,9 @@ export default function TrendingNews() {
     }
 
     // console.log("Sport Items:", (sports));
-    
+
     return (
-        <>
+        <div id="TrendingNews">
             <Disclosure as="nav" className="border-b border-slate-200">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex items-top justify-between">
@@ -49,11 +48,11 @@ export default function TrendingNews() {
                             {
                                 sports.map((item: Sport) => {
                                     // console.log("item id:::->", item.id);
-                                    
+
                                     return (
                                         <Tab title={item.name}>
-                                            <div >
-                                                <TrendingNewsItems sportID={item.id-1} />
+                                            <div id={"" + (item.id - 1)}>
+                                                <TrendingNewsItems sportID={item.id - 1} />
                                             </div>
                                         </Tab>
 
@@ -67,7 +66,7 @@ export default function TrendingNews() {
                 </div >
 
             </Disclosure>
-        </>
+        </div>
     );
 
 };

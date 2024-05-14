@@ -1,9 +1,11 @@
+
 import { API_ENDPOINT } from "../../config/constants";
 import { MatchDetailDispatch, MatcheDetailAvailableAction } from "./types";
 
 export const fetchMatcheDetail: any = async (
     dispatch: MatchDetailDispatch, matchID: string
 ) => {
+    // let navigate = useNavigate();
     try {
         dispatch({ type: MatcheDetailAvailableAction.FETCH_MATCH_DETAIL_REQUEST })
         const res = await fetch(`${API_ENDPOINT}/matches/${matchID}`, {
@@ -13,7 +15,7 @@ export const fetchMatcheDetail: any = async (
             }
         })
         if (!res.ok) {
-            throw new Error("Failed to Fetch Matche Detail")
+            throw new Error("Failed to Fetch Match Detail")
         }
         const data = await res.json();
         // console.log("Match detail for -> " , matchID, " Payload:", data);
@@ -27,8 +29,9 @@ export const fetchMatcheDetail: any = async (
         console.log(`Operation Failed:${error}`)
         dispatch({
             type: MatcheDetailAvailableAction.FETCH_MATCH_DETAIL_FAILURE,
-            payload: "Unable to Load Matche Detail"
+            payload: "Unable to Load Match Detail"
         })
+        // navigate("/signin");
     }
 }
 

@@ -1,4 +1,5 @@
 
+
 import { useFavoriteSportState } from "./context";
 import { FavoritesAction, FavoritesDispatch } from "./types";
 
@@ -7,7 +8,7 @@ export const updateSportSelection = async (
 ) => {
     const favoritesState = useFavoriteSportState();
 	console.log("Favorite State:->", favoritesState);
-	
+	// let navigate = useNavigate();
     try {
         
         dispatch({
@@ -17,6 +18,7 @@ export const updateSportSelection = async (
         console.log("Action: Favorite:",favoritesState );
     } catch (error) {
         console.log(`Operation Failed:${error}`)
+        // navigate("/signin");
         
     }
 }

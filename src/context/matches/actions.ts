@@ -2,9 +2,11 @@ import {MatchDispatch, MatcheAvailableAction } from "./types";
 import { API_ENDPOINT } from "../../config/constants";
 
 
+
 export const fetchMatches = async (
     dispatch: MatchDispatch,
 ) => {
+    // let navigate = useNavigate();
     try {
         dispatch({ type: MatcheAvailableAction.FETCH_MATCH_REQUEST })
         const res = await fetch(`${API_ENDPOINT}/matches`, {
@@ -24,7 +26,9 @@ export const fetchMatches = async (
         })
 
     } catch (error) {
-        console.log(`Operation Failed:${error}`)
+        console.log(`Operation Failed at fetchMatches:${error}`)
+        // navigate("/signin");
+        
         dispatch({
             type: MatcheAvailableAction.FETCH_MATCH_FAILURE,
             payload: "Unable to Load Matches"

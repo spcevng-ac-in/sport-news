@@ -1,31 +1,44 @@
-import { useState, useContext, Fragment } from 'react'
-import { Disclosure, Menu, Transition, Switch } from '@headlessui/react'
-import { Cog6ToothIcon, UserCircleIcon } from '@heroicons/react/24/outline'
+import { Fragment } from 'react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+
 import Logo from "../../assets/images/logo.svg"
 
-import { ThemeContext } from "../../context/theme";
 import Preferences from './Preferences';
+import { UserCircleIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
 
 const userNavigation = [
-  { name: 'Profile', href: '#' },
-  { name: 'Sign out', href: '/logout' },
+  { name: 'Change Password', to: '/changepassword' },
+  { name: 'Sign out', to: '/logout' },
 ]
 
-const classNames = (...classes: string[]): string => classes.filter(Boolean).join(' ');
+const guestNavigation = [
+  { name: 'Sign In', to: '/signin' },
+  { name: 'Sign Up', to: '/signup' },
+]
+
+// const classNames = (...classes: string[]): string => classes.filter(Boolean).join(' ');
 
 const Appbar = () => {
-  const { theme, setTheme } = useContext(ThemeContext)
-  const [enabled, setEnabled] = useState(false)
-  const toggleTheme = () => {
-    let newTheme = ''
-    if (theme === 'light') {
-      newTheme = 'dark'
-    } else {
-      newTheme = 'light'
-    }
-    setEnabled(!enabled)
-    setTheme(newTheme)
-  }
+  // const { theme, setTheme } = useContext(ThemeContext)
+  // const [enabled, setEnabled] = useState(false)
+  // const toggleTheme = () => {
+  //   let newTheme = ''
+  //   if (theme === 'light') {
+  //     newTheme = 'dark'
+  //   } else {
+  //     newTheme = 'light'
+  //   }
+  //   setEnabled(!enabled)
+  //   setTheme(newTheme)
+  // }
+
+  let tempUserData = localStorage.getItem("userData") ?? "";
+  console.log("User Data 2:", tempUserData);
+  let navigation = tempUserData ? userNavigation : guestNavigation;
+  let userData = undefined
+  if (tempUserData !== undefined && tempUserData.length > 0)
+    userData = JSON.parse(tempUserData);
 
   return (
     <>
@@ -35,7 +48,7 @@ const Appbar = () => {
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <img
-                  className="h-8"
+                  className="h-12"
                   src={Logo}
                   alt="Sport News"
                 />
@@ -44,10 +57,15 @@ const Appbar = () => {
 
             </div>
             <div className="text-center text-3xl font-bold text-blue-600">
-              Sports Center
+              Sports & News Center
             </div>
             <div className="hidden md:block">
               <div className="ml-4 flex items-center md:ml-6">
+                <div className='text-xl text-purple-600'>Welcome &nbsp;
+                {
+                  userData ? (userData.name) : ("Guest")
+                }
+                </div>
                 {/* <div className="py-16">
                   <Switch
                     checked={enabled}
@@ -72,9 +90,7 @@ const Appbar = () => {
                   <div>
                     <Menu.Button className="rounded-full bg-white p-1 text-gray-400 hover:text-blue-600">
                       <Preferences />
-                      {/* <Cog6ToothIcon className="w-8 dark:bg-gray-800 dark:text-white bg-white  text-gray-400  dark:hover:text-blue-500 hover:text-blue-600" /> */}
                     </Menu.Button>
-
                     <Menu.Button className="rounded-full bg-white p-1 text-gray-400 hover:text-blue-600">
                       <UserCircleIcon className="w-8 dark:bg-gray-800 dark:text-white bg-white  text-gray-400  dark:hover:text-blue-500 hover:text-blue-600" aria-hidden="true" />
                     </Menu.Button>
@@ -89,19 +105,31 @@ const Appbar = () => {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {userNavigation.map((item) => (
+                      {/* <Menu.Item key="ChangePassword" >
+                        
+                        <Link to="/changepassword">
+                          <p className="text-gray-700 hover:text-blue-600 m-1">
+                            Change Password
+                          </p>
+                        </Link>
+                      </Menu.Item>
+                      <Menu.Item key="Signout" >
+                        <Link to="/logout">
+                          <p className="text-gray-700 hover:text-blue-600  m-1">
+                            Sign out
+                          </p>
+                        </Link>
+                        
+                      </Menu.Item> */}
+                      {navigation.map((item) => (
                         <Menu.Item key={item.name}>
-                          {({ active }) => (
-                            <a
-                              href={item.href}
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
-                              )}
-                            >
-                              {item.name}
-                            </a>
-                          )}
+                          {/* {({ active }) => ( */}
+                            <Link to={item.to}>
+                              <p className="text-gray-700 hover:text-blue-600  m-1">
+                                {item.name}
+                              </p>
+                            </Link>
+                          {/* )} */}
                         </Menu.Item>
                       ))}
                     </Menu.Items>

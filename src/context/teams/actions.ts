@@ -1,10 +1,12 @@
+
 import { API_ENDPOINT } from "../../config/constants";
-import { TeamAction, TeamDispatch } from "./types";
+import { TeamAction } from "./types";
 
 
 export const fetchTeams = async (
     dispatch: any,
 ) => {
+    // const navigate = useNavigate();
     try {
         // console.log(`${API_ENDPOINT}/teams`);
 
@@ -28,6 +30,7 @@ export const fetchTeams = async (
 
     } catch (error) {
         console.log(`Operation Failed:${error}`)
+        // navigate("/signin");
         dispatch({
             type: TeamAction.FETCH_TEAM_FAILURE,
             payload: "Unable to Load Teams"
