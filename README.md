@@ -32,7 +32,7 @@ There are four high-level features that implemented:
 
 # Screen Shots:
 ### Landing Screen (As a Guest)
-![Landing Screen](./assets/images/.png)
+![Landing Screen](./assets/images/01.png)
 
 ### Live Matches Scores
 ![Live Matches Scores](./assets/images/05.png)
@@ -73,7 +73,7 @@ Because of first time logging, User have not selected any preferences, "No Trend
 ![YouLikes](./assets/images/YouLikes.png)
 
 ### Option for Logged Users
-![Looged User Options](src\assets\images\LoggedUserOptions.png)
+![Looged User Options](./assets/images/LoggedUserOptions.png)
 
 ### Changed Password
 ![Changed Password](./assets/images/ChangePassword.png)
@@ -82,7 +82,7 @@ Because of first time logging, User have not selected any preferences, "No Trend
 # Implementation
 
 Download the Source Code
-![Link](https://github.com/spcevng-ac-in/sport-news.git)
+[Link](https://github.com/spcevng-ac-in/sport-news.git)
 
 Pre-requisite: 
 
