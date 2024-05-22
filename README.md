@@ -70,16 +70,28 @@ Because of first time logging, User have not selected any preferences, "No Trend
 ![User's Interesting Preferences for Sports and Teams](src\assets\images\Preferences.png)
  
 ### You Likes! (According to User Preferences)
-![YouLikes](src\assets\images\YouLikes.png)
+![YouLikes](./src\assets\images\YouLikes.png)
 
 ### Option for Logged Users
 ![Looged User Options](src\assets\images\LoggedUserOptions.png)
 
 ### Changed Password
-![Changed Password](src\assets\images\ChangePassword.png)
+![Changed Password](./assets/images/ChangePassword.png)
 
 
 # Implementation
 
 Download the Source Code
-![Source Code Link](https://github.com/spcevng-ac-in/sport-news.git)
+![Link](https://github.com/spcevng-ac-in/sport-news.git)
+
+Pre-requisite: 
+
+NodeJS ![Link](https://nodejs.org/en)
+
+Install required packages
+
+    npm run install
+
+Run Application
+
+    npm run dev
