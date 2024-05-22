@@ -21,6 +21,7 @@ const Preferences = () => {
         return (<></>)
 
     const preferencesDispatch = usePreferencesDispatch();
+    console.log("Preferences Dispatch:", preferencesDispatch);
     let preferencesState: any = usePreferencesState();
     const { preferences, isLoading22, isError22, errorMessage22 } = preferencesState;
     console.log("Preferences:", preferences, isLoading22, isError22, errorMessage22);
@@ -95,12 +96,12 @@ const Preferences = () => {
         // let element :HTMLInputElement= event.target ;
         let element = (event.target as HTMLInputElement)
         if (element.checked) {
-            preferences?.sports.push(Number(element.id));
+            preferences?.sports?.push(Number(element.id));
         }
         else {
-            preferences.sports = preferences?.sports.filter((item: number) => item !== Number(element.id));
+            preferences.sports = preferences?.sports?.filter((item: number) => item !== Number(element.id));
         }
-        // console.log("After:", preferences.sports);
+        console.log("After:", preferences.sports);
 
     }
 
@@ -109,10 +110,10 @@ const Preferences = () => {
         // console.log("Before Preferences:", preferences.teams);
         let element = (event.target as HTMLInputElement)
         if (element.checked) {
-            preferences.teams.push(Number(element.id));
+            preferences?.teams?.push(Number(element.id));
         }
         else {
-            preferences.teams = preferences.teams.filter((item: number) => item !== Number(element.id));
+            preferences.teams = preferences?.teams?.filter((item: number) => item !== Number(element.id));
         }
         // console.log("After:", preferences.sports);
 

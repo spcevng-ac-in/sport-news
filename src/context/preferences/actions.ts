@@ -23,7 +23,7 @@ export const fetchPreferences: any = async (
             throw new Error("Failed to Fetch Preferences Detail")
         }
         const data = await res.json();
-        // console.log("Fetch Preference-1:", data.preferences);
+        console.log("Fetch Preference-1:", data.preferences);
         dispatch({
             type: PreferencesAction.FETCH_PREFERENCES_SUCCESS,
             payload: data.preferences
@@ -45,7 +45,7 @@ export const updatePreferences: any = async (
 ) => {
 
     // const preference = usePreferencesState();
-    // console.log("TO update preferences:", preference);
+    console.log("TO update preferences:", preference);
     // let navigate = useNavigate();
     try {
         dispatch({ type: PreferencesAction.FETCH_PREFERENCES_REQUEST })

@@ -21,9 +21,15 @@ const SignupForm: React.FC = () => {
             });
 
             if (!response.ok) {
+                console.log("Response:", response);    
+                // alert("Failed to Sign-up!")
+                const data = await response.json();
+                console.log(data.errors[0]);
+               alert(data.errors[0])
                 throw new Error('Sign-up failed');
             }
             console.log('Sign-up successful');
+
             // Dialogue: After successful signup we have to redirect the user to the secured page. We will do that later.
             // extract the response body as JSON data
             const data = await response.json();

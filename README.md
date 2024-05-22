@@ -31,7 +31,7 @@ There are four high-level features that implemented:
 + Preferences may include selecting favourite sports or teams to receive tailored news and score updates.
 
 # Screen Shots:
-### Landing Screen
+### Landing Screen (As a Guest)
 ![Landing Screen](src\assets\images\01.png)
 
 ### Live Matches Scores
@@ -60,3 +60,20 @@ There are four high-level features that implemented:
 
 ### Sign In Page
 ![Sign In Page](src\assets\images\SignInPage.png)
+
+### Looged In User Landing Screen
+Because of first time logging, User have not selected any preferences, "No Trendingd News For You!" meessage display, means no filtered news according to your interest.
+
+![Looged In User Landing Screen](src\assets\images\LoggedUser.png)
+
+### User's Interesting Preferences for Sports and Teams
+![User's Interesting Preferences for Sports and Teams](src\assets\images\Preferences.png)
+ 
+### You Likes! (According to User Preferences)
+![YouLikes](src\assets\images\YouLikes.png)
+
+### Option for Logged Users
+![Looged User Options](src\assets\images\LoggedUserOptions.png)
+
+### Changed Password
+![Changed Password](src\assets\images\ChangePassword.png)
