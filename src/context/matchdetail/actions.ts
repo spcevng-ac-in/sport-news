@@ -34,30 +34,3 @@ export const fetchMatcheDetail: any = async (
         // navigate("/signin");
     }
 }
-
-// export const fetchAllMatcheDetail: any = async (
-//     dispatch: MatchDetailDispatch, matches: Matches[]
-// ) => {
-//     const matchDetailDispatch = useALLMatcheDetailDispatch();
-//     dispatch({ type: MatcheDetailAvailableAction.FETCH_ALL_MATCH_DETAIL_REQUEST })
-        
-//     try {
-//         matches.forEach((match) => {
-//             fetchMatcheDetail(matchDetailDispatch, match.id);
-
-//         });
-//         const aLLMatchDetailState = useALLMatcheDetailState();
-//         const { matchDetail, isLoading, isError, errorMessage } = aLLMatchDetailState;
-//         dispatch({
-//             type: MatcheAvailableAction.FETCH_ALL_MATCH_DETAIL_SUCCESS,
-//             payload: matchDetail
-//         })
-//         return matchDetail;
-//     } catch (error) {
-//         console.log(`Operation Failed:${error}`)
-//         dispatch({
-//             type: MatcheAvailableAction.FETCH_ALL_MATCH_DETAIL_FAILURE,
-//             payload: "Unable to Load Matche Detail"
-//         })
-//     }
-// }

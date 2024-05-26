@@ -8,7 +8,7 @@ import { useSportDispatch } from "../../context/sports/context";
 import { fetchSports } from "../../context/sports/action";
 
 const DashboardContainer = () => {
-  
+
   const matchDispatch = useMatchesDispatch();
   const trendingNewsDispatch = useTrendingNewsDispatch();
   const sportsDispatch = useSportDispatch();

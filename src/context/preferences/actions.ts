@@ -32,7 +32,7 @@ export const fetchPreferences: any = async (
     } catch (error) {
         console.log(`Operation Failed:${error}`)
         // navigate("/signin");
-        
+
         dispatch({
             type: PreferencesAction.FETCH_PREFERENCES_FAILURE,
             payload: "Unable to Load Preferences Detail"
@@ -49,7 +49,7 @@ export const updatePreferences: any = async (
     // let navigate = useNavigate();
     try {
         dispatch({ type: PreferencesAction.FETCH_PREFERENCES_REQUEST })
-        
+
         const token = localStorage.getItem("authToken") ?? "";
         // console.log("Token:", token);
         const res = await fetch(`${API_ENDPOINT}/user/preferences`, {
@@ -60,13 +60,13 @@ export const updatePreferences: any = async (
             },
             body: JSON.stringify({ preferences: preference }),
         });
-        
+
         if (!res.ok) {
             throw new Error("Failed to Update Preferences")
         }
         const data = await res.json();
         // console.log("Updated data response:", data.preferences);
-        // fetchPreferences(dispatch);
+
         dispatch({
             type: PreferencesAction.FETCH_PREFERENCES_SUCCESS,
             payload: data.preferences
@@ -75,7 +75,7 @@ export const updatePreferences: any = async (
     } catch (error) {
         console.log(`Operation Failed:${error}`)
         // navigate("/signin");
-        
+
         dispatch({
             type: PreferencesAction.FETCH_PREFERENCES_FAILURE,
             payload: "Unable to Load Preferences Detail"

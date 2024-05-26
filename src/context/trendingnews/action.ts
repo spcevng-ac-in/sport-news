@@ -1,8 +1,6 @@
 import {TrendingNewsDispatch, TrendingNewsAvailableAction } from "./types";
 import { API_ENDPOINT } from "../../config/constants";
 
-
-
 export const fetchTrendingNews = async (
     dispatch: TrendingNewsDispatch,
 ) => {

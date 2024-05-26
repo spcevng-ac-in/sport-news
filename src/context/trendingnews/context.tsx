@@ -3,11 +3,11 @@ import { TrendingNewsDispatch, TrendingNewsState, initialTrendingNewsState } fro
 import { TrendingNewsReducer } from "./reducer";
 
 const TrendingNewsStateContext = createContext<TrendingNewsState>(initialTrendingNewsState);
-const TrendingNewsDispatchContext = createContext<TrendingNewsDispatch>(() => {});
+const TrendingNewsDispatchContext = createContext<TrendingNewsDispatch>(() => { });
 
 
 export const TrendingNewsProvider: React.FC<React.PropsWithChildren> = ({
-  children,}) => {
+  children, }) => {
   const [state, dispacth] = useReducer(TrendingNewsReducer, initialTrendingNewsState);
   return (
     <TrendingNewsStateContext.Provider value={state}>

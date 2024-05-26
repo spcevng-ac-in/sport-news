@@ -3,11 +3,11 @@ import { MatchReducer } from "./reducer";
 import { MatchesState, MatchDispatch, initialState, } from "./types";
 
 const MatchesStateContext = createContext<MatchesState>(initialState);
-const MatchesDispatchContext = createContext<MatchDispatch>(() => {});
+const MatchesDispatchContext = createContext<MatchDispatch>(() => { });
 
 
 export const MatchesProvider: React.FC<React.PropsWithChildren> = ({
-  children,}) => {
+  children, }) => {
   const [state, dispacth] = useReducer(MatchReducer, initialState);
   return (
     <MatchesStateContext.Provider value={state}>

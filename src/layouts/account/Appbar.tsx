@@ -17,7 +17,7 @@ const guestNavigation = [
   { name: 'Sign Up', to: '/signup' },
 ]
 
-// const classNames = (...classes: string[]): string => classes.filter(Boolean).join(' ');
+
 
 const Appbar = () => {
   // const { theme, setTheme } = useContext(ThemeContext)
@@ -62,9 +62,9 @@ const Appbar = () => {
             <div className="hidden md:block">
               <div className="ml-4 flex items-center md:ml-6">
                 <div className='text-xl text-purple-600'>Welcome &nbsp;
-                {
-                  userData ? (userData.name) : ("Guest")
-                }
+                  {
+                    userData ? (userData.name) : ("Guest")
+                  }
                 </div>
                 {/* <div className="py-16">
                   <Switch
@@ -124,11 +124,11 @@ const Appbar = () => {
                       {navigation.map((item) => (
                         <Menu.Item key={item.name}>
                           {/* {({ active }) => ( */}
-                            <Link to={item.to}>
-                              <p className="text-gray-700 hover:text-blue-600  m-1">
-                                {item.name}
-                              </p>
-                            </Link>
+                          <Link to={item.to}>
+                            <p className="text-gray-700 hover:text-blue-600  m-1">
+                              {item.name}
+                            </p>
+                          </Link>
                           {/* )} */}
                         </Menu.Item>
                       ))}

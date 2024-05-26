@@ -1,4 +1,4 @@
-import {MatchDispatch, MatcheAvailableAction } from "./types";
+import { MatchDispatch, MatcheAvailableAction } from "./types";
 import { API_ENDPOINT } from "../../config/constants";
 
 
@@ -28,7 +28,7 @@ export const fetchMatches = async (
     } catch (error) {
         console.log(`Operation Failed at fetchMatches:${error}`)
         // navigate("/signin");
-        
+
         dispatch({
             type: MatcheAvailableAction.FETCH_MATCH_FAILURE,
             payload: "Unable to Load Matches"

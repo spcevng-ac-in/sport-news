@@ -9,14 +9,14 @@ const LiveGames = () => {
         <h2 className="text-2xl font-medium tracking-tight text-slate-700">
           Live Games
         </h2>
-        </div>
-        <ErrorBoundary>
-          <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
-            
-              <MatchList />
-            
-          </Suspense>
-        </ErrorBoundary>
+      </div>
+      <ErrorBoundary>
+        <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
+
+          <MatchList />
+
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 };

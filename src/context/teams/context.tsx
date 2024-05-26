@@ -3,11 +3,11 @@ import { TeamDispatch, TeamsState, initialTeamState } from "./types";
 import { TeamReducer } from "./reducer";
 
 const TeamsStateContext = createContext<TeamsState | undefined>(initialTeamState);
-const TeamsDispatchContext = createContext<TeamDispatch>(() => {});
+const TeamsDispatchContext = createContext<TeamDispatch>(() => { });
 
 
 export const TeamsProvider: React.FC<React.PropsWithChildren> = ({
-  children,}) => {
+  children, }) => {
   const [state, dispacth] = useReducer(TeamReducer, initialTeamState);
   return (
     <TeamsStateContext.Provider value={state}>

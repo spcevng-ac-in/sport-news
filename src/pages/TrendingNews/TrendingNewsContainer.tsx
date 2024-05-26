@@ -9,11 +9,11 @@ const TrendingNewsContainer = () => {
   let { newsID } = useParams();
   const trendingNewsDispatch = useTrendingNewsDispatch();
   const trendingNewsDetailDispatch = useTrendingNewsDetailDispatch();
-  
+
   useEffect(() => {
     fetchTrendingNews(trendingNewsDispatch);
-    if(newsID) fetchTrendingNewsDetail(trendingNewsDetailDispatch, newsID);
-    
+    if (newsID) fetchTrendingNewsDetail(trendingNewsDetailDispatch, newsID);
+
   }, [trendingNewsDispatch, trendingNewsDetailDispatch]);
 
   return <Outlet />;

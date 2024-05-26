@@ -4,7 +4,7 @@ import TrendingNewsList from "./TrendingNewsList";
 
 
 const TrendingNews = () => {
-  
+
 
   return (
     <>
@@ -13,15 +13,15 @@ const TrendingNews = () => {
           Trending News
         </h2>
         <ErrorBoundary>
-        <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
-          <TrendingNewsList />
+          <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
+            <TrendingNewsList />
 
-          {/* <TrendingNews/> */}
-       
-    </Suspense >
-      </ErrorBoundary >
+            {/* <TrendingNews/> */}
+
+          </Suspense >
+        </ErrorBoundary >
       </div>
-      
+
     </>
   );
 };

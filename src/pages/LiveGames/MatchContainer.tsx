@@ -11,7 +11,7 @@ const MatchContainer = () => {
   const matchDetailDispatch = useMatcheDetailDispatch();
   useEffect(() => {
     fetchMatches(matchDispatch);
-    if(matchID) fetchMatcheDetail(matchDetailDispatch, matchID);
+    if (matchID) fetchMatcheDetail(matchDetailDispatch, matchID);
   }, [matchDispatch, matchDetailDispatch]);
 
   return <Outlet />;

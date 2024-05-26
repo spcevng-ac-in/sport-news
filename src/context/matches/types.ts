@@ -40,4 +40,4 @@ export type MatchActions =
     | { type: MatcheAvailableAction.FETCH_MATCH_FAILURE, payload: string }
 
 
-export type MatchDispatch = React.Dispatch<MatchActions >
+export type MatchDispatch = React.Dispatch<MatchActions>

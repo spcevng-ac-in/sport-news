@@ -53,7 +53,7 @@ function DropdownSport({
 		setIsFocused(false);
 		// setFavoriteSportState(selectedID);
 		// setState(selectedID);
-		setState({id:selectedID,name:selectedValue});
+		setState({ id: selectedID, name: selectedValue });
 
 	};
 	React.useEffect(() => {

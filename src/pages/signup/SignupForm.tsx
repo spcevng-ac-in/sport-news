@@ -21,11 +21,11 @@ const SignupForm: React.FC = () => {
             });
 
             if (!response.ok) {
-                console.log("Response:", response);    
+                console.log("Response:", response);
                 // alert("Failed to Sign-up!")
                 const data = await response.json();
                 console.log(data.errors[0]);
-               alert(data.errors[0])
+                alert(data.errors[0])
                 throw new Error('Sign-up failed');
             }
             console.log('Sign-up successful');
@@ -63,7 +63,7 @@ const SignupForm: React.FC = () => {
             </div>
             <button type="submit" className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4">Sign up</button>
         </form>
-        
+
     );
 }
 export default SignupForm;

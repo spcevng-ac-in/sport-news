@@ -6,12 +6,12 @@ export default function FavoritesItems(props: any) {
     // console.log("Props:", props);
     let sport = props.sport;
     let team = props.team;
-    if (sport === undefined || team === undefined )  {
+    if (sport === undefined || team === undefined) {
         return <span></span>;
     }
     // console.log("Selected Sport:", sport);
     // console.log("Selected Team:", team);
-    
+
     let trendingNewsState: any = useTrendingNewsState();
     const { trendingNews, isLoading, isError, errorMessage } = trendingNewsState
     console.log("Trending News:", trendingNews, isLoading, isError, errorMessage);
@@ -22,35 +22,18 @@ export default function FavoritesItems(props: any) {
     if (isError) {
         return <span>Trending News Item Page -{errorMessage}</span>;
     }
-    // let newsID = useParams();
-    // const trendingNewsDetailDispatch = useTrendingNewsDetailDispatch();
-    // useEffect(() => {
 
-    //     if (newsID) fetchTrendingNewsDetail(trendingNewsDetailDispatch, newsID);
-
-    // }, []);
     // console.log("Sport ->", sport);
     // console.log("Team ->", team);
     let selectedNews = trendingNews.filter(
         (tempNews: TrendingNews) => {
-            // console.log("Temp News:", tempNews);
-            // console.log("tempNews.sport.id ---", tempNews.sport.id)
-            // console.log("tempNews.teams[0].id ---", tempNews.teams[0].id )
-            // console.log("tempNews.teams[1].id ---", tempNews.teams[1].id )
-            // if(tempNews.sport.id === Number(sport.id)){
-            //     if(tempNews.teams.length!=0){
-            //         if(tempNews.teams[0].id === team.id || tempNews.teams[1].id === team.id){
-            //             return true;
-            //         }
-            //     }
-            // }
-            // return false;
-            if(tempNews.sport.id !== sport.id )
+
+            if (tempNews.sport.id !== sport.id)
                 return false;
-            let tempNewsTeam = tempNews.teams.filter(item =>{
+            let tempNewsTeam = tempNews.teams.filter(item => {
                 return (team.id === item.id);
             });
-            if(tempNewsTeam.length === 0)
+            if (tempNewsTeam.length === 0)
                 return false;
 
             return true;

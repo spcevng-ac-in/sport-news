@@ -17,7 +17,7 @@ const Preferences = () => {
     const userData = localStorage.getItem("userData") ?? "";
     // console.log("User Data:", userData);
 
-    if(userData === undefined || userData.length === 0)
+    if (userData === undefined || userData.length === 0)
         return (<></>)
 
     const preferencesDispatch = usePreferencesDispatch();
@@ -25,7 +25,7 @@ const Preferences = () => {
     let preferencesState: any = usePreferencesState();
     const { preferences, isLoading22, isError22, errorMessage22 } = preferencesState;
     console.log("Preferences:", preferences, isLoading22, isError22, errorMessage22);
-    
+
     const [isOpen, setIsOpen] = useState(false)
     const closeModal = () => {
         setIsOpen(false)
@@ -119,7 +119,7 @@ const Preferences = () => {
 
     }
 
-   
+
     return (
 
         <>

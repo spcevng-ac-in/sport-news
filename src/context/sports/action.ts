@@ -3,7 +3,7 @@ import { API_ENDPOINT } from "../../config/constants";
 import { SportAction, SportDispatch } from "./types";
 
 // let navigate = useNavigate();
-    
+
 export const fetchSports = async (
     dispatch: SportDispatch,
 ) => {

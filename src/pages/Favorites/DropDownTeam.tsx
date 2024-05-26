@@ -55,7 +55,7 @@ function DropdownTeam({
 		setIsFocused(false);
 		// setFavoriteTeamState(selectedID);
 		// setState(selectedID);
-		setState({id:selectedID,name:selectedValue});
+		setState({ id: selectedID, name: selectedValue });
 	};
 	React.useEffect(() => {
 		setIsFocused(false);

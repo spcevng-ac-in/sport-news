@@ -7,23 +7,23 @@ import Favorites from "../Favorites";
 
 
 const Dashboard = () => {
-  
+
   return (
     <>
       <ErrorBoundary>
         <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
           <div>
             <LiveGames />
-            </div>
-            <hr/>
-            <div className="flex">
+          </div>
+          <hr />
+          <div className="flex">
             <div className="flex-left">
-            <TrendingNews />
+              <TrendingNews />
             </div>
             <div className="flex-right w-1/4 m-2">
-            <Favorites />
+              <Favorites />
             </div>
-            </div>
+          </div>
         </Suspense>
       </ErrorBoundary>
     </>

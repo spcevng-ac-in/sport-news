@@ -25,24 +25,24 @@ const Signin: React.FC = () => {
 
 
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        
-          
-            <div className="mt-1 bg-[#f4f4f4] border border-gray-detailBorder py-1.25 px-0.75 items-center text-center w-1/2">
-              <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
-                Sign in
-              </h1>
-              <SigninForm />
 
-              <div className="mt-4"> New User!
-                <Link id="signup-link" to="/signup" > Sign Up </Link>
-              </div>
-            </div>
-            <div className="bg-[#f4f4f4] border border-gray-detailBorder border-t-0 py-1.25 px-0.75 items-center text-center w-1/2 md:w-full">
-              <img src={sports_journalism} alt="Sports News" />
-            </div>
+
+        <div className="mt-1 bg-[#f4f4f4] border border-gray-detailBorder py-1.25 px-0.75 items-center text-center w-1/2">
+          <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
+            Sign in
+          </h1>
+          <SigninForm />
+
+          <div className="mt-4"> New User!
+            <Link id="signup-link" to="/signup" > Sign Up </Link>
           </div>
-        
-      
+        </div>
+        <div className="bg-[#f4f4f4] border border-gray-detailBorder border-t-0 py-1.25 px-0.75 items-center text-center w-1/2 md:w-full">
+          <img src={sports_journalism} alt="Sports News" />
+        </div>
+      </div>
+
+
 
     </div>
   );
